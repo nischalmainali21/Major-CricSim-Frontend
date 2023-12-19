@@ -1,13 +1,12 @@
-"use client"
-import React, { useState, useEffect } from 'react'
-import playerStatsData from '../../data/player_stats_data.json';
+"use client";
+import React, { useState, useEffect } from "react";
+import playerStatsData from "../../data/player_stats_data.json";
 
 const Filter = () => {
-
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  
+
   useEffect(() => {
     // Filter players based on the search term
     const filteredResults = Object.entries(playerStatsData)
@@ -19,15 +18,13 @@ const Filter = () => {
     setFilteredPlayers(filteredResults);
   }, [searchTerm]);
 
-  const handleNameClick = playerName => {
+  const handleNameClick = (playerName) => {
     console.log(`Selected player: ${playerName}`);
     setSelectedPlayer(playerName);
-    setSearchTerm('');
+    setSearchTerm("");
   };
-  
 
   return (
-    
     <div>
       {/* <div className="search-container">
         <input
@@ -38,40 +35,40 @@ const Filter = () => {
         />
       </div> */}
       <div className="flex p-2 rounded-lg relative">
-          
-          <input
-            className="border-b-2 p-4 "
-            onChange={e => setSearchTerm(e.target.value)}
-            type="text"
-            value={searchTerm}
-            placeholder="Search Players"
-          />
-          <div className="py-3 relative top-1 right-8 text-white font-semibold rounded-lg transition duration-3000 cursor-pointer">
-          <span><svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 opacity-30 text-dark hover:text-primary"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="black"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg></span>
+        <input
+          className="border-b-2 p-4 "
+          onChange={(e) => setSearchTerm(e.target.value)}
+          type="text"
+          value={searchTerm}
+          placeholder="Search Players"
+        />
+        <div className="py-3 relative top-1 right-8 text-white font-semibold rounded-lg transition duration-3000 cursor-pointer">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 opacity-30 text-dark hover:text-primary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="black"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </span>
         </div>
-        </div>
-
+      </div>
 
       {searchTerm.length > 0 && (
         <ul>
           {filteredPlayers.map(({ playerName }) => (
-            <li 
-            className='cursor-pointer w-[250px] hover:bg-blue-400'
-            key={playerName} 
-            onClick={() => handleNameClick(playerName)}
+            <li
+              className="cursor-pointer w-[250px] hover:bg-blue-400"
+              key={playerName}
+              onClick={() => handleNameClick(playerName)}
             >
               {playerName}
             </li>
@@ -79,14 +76,14 @@ const Filter = () => {
         </ul>
       )}
 
-  {selectedPlayer && (
+      {selectedPlayer && (
         <div>
           <h2>Selected Player:</h2>
           <p>{selectedPlayer}</p>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Filter
+export default Filter;
