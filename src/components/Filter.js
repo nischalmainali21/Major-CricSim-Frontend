@@ -37,7 +37,7 @@ const Filter = ({ selectedPlayer, setSelectedPlayer, playerStatsData }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
           value={searchTerm}
-          placeholder="Search Players"
+          placeholder="Select Player"
         />
         <div className="py-3 relative top-1 right-8 text-white font-semibold rounded-lg transition duration-3000 cursor-pointer">
           <span>

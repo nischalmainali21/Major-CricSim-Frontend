@@ -5,24 +5,33 @@ import PlayerTable from "@/components/PlayerTable";
 import Filter from "@/components/Filter";
 
 export const PlayerComparision = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [firstSelectedPlayer, setFirstSelectedPlayer] = useState(null);
+  const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(null);
+
+  const selectedPlayers = [firstSelectedPlayer, secondSelectedPlayer];
+  console.log(selectedPlayers);
 
   return (
     <div>
       <Filter
-        selectedPlayer={selectedPlayer}
-        setSelectedPlayer={setSelectedPlayer}
+        selectedPlayer={firstSelectedPlayer}
+        setSelectedPlayer={setFirstSelectedPlayer}
         playerStatsData={playersData}
       />
-      {/* <div className="flex flex-col gap-10">
-        {selectedPlayer.map((playerName) => (
+      <Filter
+        selectedPlayer={secondSelectedPlayer}
+        setSelectedPlayer={setSecondSelectedPlayer}
+        playerStatsData={playersData}
+      />
+      <div className="flex flex-col gap-10">
+        {selectedPlayers.map((playerName) => (
           <PlayerTable
             key={playerName}
             playerStats={playersData[playerName]}
             playerName={playerName}
           />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
