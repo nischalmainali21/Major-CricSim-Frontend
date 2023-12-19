@@ -1,6 +1,7 @@
 import PlayerCard from "../components/PlayerCard";
 import playersData from "../../data/player_stats_data.json";
 import Filter from "@/components/Filter";
+import PlayerTable from "@/components/PlayerTable";
 
 export default function Home() {
   const selectedPlayers = ["A Ashish Reddy", "A Badoni"];
@@ -8,7 +9,7 @@ export default function Home() {
   // console.log(playersData[testPlayer]);
   return (
     <main>
-      <Filter />
+      {/* <Filter />
       <div className="flex flex-col gap-10">
         {selectedPlayers.map((playerName) => (
           <PlayerCard
@@ -17,7 +18,11 @@ export default function Home() {
             playerName={playerName}
           />
         ))}
-      </div>
+      </div> */}
+      <PlayerTable
+        playerStats={playersData["A Ashish Reddy"]}
+        playerName={"A Ashish Reddy"}
+      />
     </main>
   );
 }
