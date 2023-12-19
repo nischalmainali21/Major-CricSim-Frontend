@@ -27,10 +27,10 @@ const PlayerCard = ({ playerStats, playerName }) => {
           <p>Double Scored: {playerStats["2s_scored"]}</p>
           <p>Four Scored: {playerStats["4s_scored"]}</p>
           <p>Highest Scored in a single match: {playerStats["high_score"]}</p>
-          <p>25 Scored: {playerStats["25s_scored"]}</p>
-          <p>half century Scored: {playerStats["50s_scored"]}</p>
-          <p>75 Scored: {playerStats["75s_scored"]}</p>
-          <p>century Scored: {playerStats["100s_scored"]}</p>
+          <p>25 Scored: {playerStats["25_scored"]}</p>
+          <p>half century Scored: {playerStats["50_scored"]}</p>
+          <p>75 Scored: {playerStats["75_scored"]}</p>
+          <p>century Scored: {playerStats["100_scored"]}</p>
           <p>strike rate: {playerStats["strike_rate_x"]}</p>
           <p>Batting Average: {playerStats["batting_average"]}</p>
           <p>explosivity Rating: {playerStats["explosivity_rating"]}</p>
