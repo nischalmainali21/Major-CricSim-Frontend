@@ -2,7 +2,6 @@
 import React from "react";
 
 import {
-  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -12,7 +11,7 @@ const columns = [
   {
     accessorKey: "batter_matches_played",
     header: "Matches Played",
-    cell: (props) => <p>{props.getValue()}</p>,
+    cell: (props) => <p>{props?.getValue()}</p>,
   },
   {
     accessorKey: "runs_scored",

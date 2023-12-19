@@ -39,15 +39,30 @@ const scaleValue = (value, minOld, maxOld, minNew, maxNew) => {
   return ((value - minOld) / (maxOld - minOld)) * (maxNew - minNew) + minNew;
 };
 
-const PlayerChart = ({ playerStats, playerName }) => {
-  const {
-    battingStrikeRate, //400.000000
-    battingAverage, //88.000000
-    explosivityRating, //1
-    bowlingStrikeRate, //85
-    bowlingAverage, //126
-    economy, //36
-  } = playerStats;
+const PlayerChart = ({
+  firstPlayerStats,
+  firstPlayerName,
+  secondPlayerStats,
+  secondPlayerName,
+}) => {
+  // console.log(firstPlayerStats);
+  const firstChartStats = new Object({
+    battingStrikeRate: firstPlayerStats["strike_rate_x"],
+    battingAverage: firstPlayerStats["batting_average"],
+    explosivityRating: firstPlayerStats["explosivity_rating"],
+    bowlingStrikeRate: firstPlayerStats["strike_rate_y"],
+    bowlingAverage: firstPlayerStats["bowling_average"],
+    economy: firstPlayerStats["economy"],
+  });
+
+  const secondChartStats = new Object({
+    battingStrikeRate: secondPlayerStats["strike_rate_x"],
+    battingAverage: secondPlayerStats["batting_average"],
+    explosivityRating: secondPlayerStats["explosivity_rating"],
+    bowlingStrikeRate: secondPlayerStats["strike_rate_y"],
+    bowlingAverage: secondPlayerStats["bowling_average"],
+    economy: secondPlayerStats["economy"],
+  });
   const chartData = {
     labels: [
       "battingStrikeRate",
@@ -59,16 +74,30 @@ const PlayerChart = ({ playerStats, playerName }) => {
     ],
     datasets: [
       {
-        label: `${playerName} Stats`,
+        label: `${firstPlayerName} Stats`,
         data: [
-          scaleValue(battingStrikeRate, 0, 400, 0, 20),
-          scaleValue(battingAverage, 0, 88, 0, 20),
-          scaleValue(explosivityRating, 0, 1, 0, 20),
-          scaleValue(bowlingStrikeRate, 0, 85, 0, 20),
-          scaleValue(bowlingAverage, 0, 126, 0, 20),
-          scaleValue(economy, 0, 36, 0, 20),
+          scaleValue(firstChartStats.battingStrikeRate, 0, 400, 0, 20),
+          scaleValue(firstChartStats.battingAverage, 0, 88, 0, 20),
+          scaleValue(firstChartStats.explosivityRating, 0, 1, 0, 20),
+          scaleValue(firstChartStats.bowlingStrikeRate, 0, 85, 0, 20),
+          scaleValue(firstChartStats.bowlingAverage, 0, 126, 0, 20),
+          scaleValue(firstChartStats.economy, 0, 36, 0, 20),
         ],
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        backgroundColor: "rgba(37,186,142, 0.2)",
+        borderColor: "rgba(155, 99, 132, 1)",
+        borderWidth: 2,
+      },
+      {
+        label: `${secondPlayerName} Stats`,
+        data: [
+          scaleValue(secondChartStats.battingStrikeRate, 0, 400, 0, 20),
+          scaleValue(secondChartStats.battingAverage, 0, 88, 0, 20),
+          scaleValue(secondChartStats.explosivityRating, 0, 1, 0, 20),
+          scaleValue(secondChartStats.bowlingStrikeRate, 0, 85, 0, 20),
+          scaleValue(secondChartStats.bowlingAverage, 0, 126, 0, 20),
+          scaleValue(secondChartStats.economy, 0, 36, 0, 20),
+        ],
+        backgroundColor: "rgba(255, 1, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 2,
       },

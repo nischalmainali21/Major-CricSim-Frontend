@@ -73,12 +73,12 @@ const Filter = ({ selectedPlayer, setSelectedPlayer, playerStatsData }) => {
         </ul>
       )}
 
-      {selectedPlayer && (
+      {/* {selectedPlayer && (
         <div>
           <h2>Selected Player:</h2>
           <p>{selectedPlayer}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
