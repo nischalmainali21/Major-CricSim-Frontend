@@ -16,7 +16,7 @@ const Filter = ({ selectedPlayer, setSelectedPlayer, playerStatsData }) => {
   }, [searchTerm]);
 
   const handleNameClick = (playerName) => {
-    console.log(`Selected player: ${playerName}`);
+    // console.log(`Selected player: ${playerName}`);
     setSelectedPlayer(playerName);
     setSearchTerm("");
   };

@@ -63,6 +63,7 @@ const PlayerChart = ({
     bowlingAverage: secondPlayerStats["bowling_average"],
     economy: secondPlayerStats["economy"],
   });
+
   const chartData = {
     labels: [
       "battingStrikeRate",
@@ -85,7 +86,7 @@ const PlayerChart = ({
         ],
         backgroundColor: "rgba(37,186,142, 0.2)",
         borderColor: "rgba(155, 99, 132, 1)",
-        borderWidth: 2,
+        borderWidth: 1,
       },
       {
         label: `${secondPlayerName} Stats`,
@@ -99,14 +100,21 @@ const PlayerChart = ({
         ],
         backgroundColor: "rgba(255, 1, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   };
 
   return (
     <div>
-      <Radar data={chartData} />
+      <Radar
+        data={chartData}
+        width={800}
+        height={500}
+        options={{
+          maintainAspectRatio: false,
+        }}
+      />
     </div>
   );
 };
