@@ -11,6 +11,7 @@ const PlayerCard = ({ playerStats, playerName }) => {
     bowlingAverage: playerStats["bowling_average"],
     economy: playerStats["economy"],
   });
+
   return (
     <div>
       <h1>{playerName}</h1>
