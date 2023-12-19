@@ -59,8 +59,8 @@ const PlayerCard = ({ playerStats, playerName }) => {
           <p>Economy: {playerStats["economy"]}</p>
           <p>Total Runs Conceded: {playerStats["total_runs_conceded"]}</p>
         </div>
+        <PlayerChart playerStats={chartStats} playerName={playerName} />
       </div>
-      <PlayerChart playerStats={chartStats} playerName={playerName} />
     </div>
   );
 };
