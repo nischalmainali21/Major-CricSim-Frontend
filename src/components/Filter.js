@@ -1,12 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import playerStatsData from "../../data/player_stats_data.json";
 
-const Filter = () => {
+const Filter = ({ selectedPlayer, setSelectedPlayer, playerStatsData }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlayers, setFilteredPlayers] = useState([]);
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
-
   useEffect(() => {
     // Filter players based on the search term
     const filteredResults = Object.entries(playerStatsData)

@@ -1,17 +1,14 @@
-import PlayerCard from "../components/PlayerCard";
-import playersData from "../../data/player_stats_data.json";
-import Filter from "@/components/Filter";
-import PlayerBattingTable from "@/components/PlayerBattingTable";
-import PlayerBowlingTable from "@/components/PlayerBowlingTable";
-import PlayerTable from "@/components/PlayerTable";
+// import PlayerCard from "../components/PlayerCard";
+
+import { PlayerComparision } from "./playercomparision/page";
 
 export default function Home() {
-  const selectedPlayers = ["A Ashish Reddy", "A Badoni"];
+  // const selectedPlayers = ["A Ashish Reddy", "A Badoni"];
+
   // const testPlayer = "A Ashish Reddy";
   // console.log(playersData[testPlayer]);
   return (
     <main>
-      <Filter />
       {/* <div className="flex flex-col gap-10">
         {selectedPlayers.map((playerName) => (
           <PlayerCard
@@ -21,15 +18,7 @@ export default function Home() {
           />
         ))}
       </div> */}
-      <div className="flex flex-col gap-10">
-        {selectedPlayers.map((playerName) => (
-          <PlayerTable
-            key={playerName}
-            playerStats={playersData[playerName]}
-            playerName={playerName}
-          />
-        ))}
-      </div>
+      <PlayerComparision />
     </main>
   );
 }
