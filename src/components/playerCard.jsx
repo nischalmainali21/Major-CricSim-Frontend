@@ -3,6 +3,14 @@ import PlayerChart from "./PlayerChart";
 
 const PlayerCard = ({ playerStats, playerName }) => {
   // console.log(playerStats);
+  const chartStats = new Object({
+    battingStrikeRate: playerStats["strike_rate_x"],
+    battingAverage: playerStats["batting_average"],
+    explosivityRating: playerStats["explosivity_rating"],
+    bowlingStrikeRate: playerStats["strike_rate_y"],
+    bowlingAverage: playerStats["bowling_average"],
+    economy: playerStats["economy"],
+  });
   return (
     <div>
       <h1>{playerName}</h1>
@@ -51,7 +59,7 @@ const PlayerCard = ({ playerStats, playerName }) => {
           <p>Total Runs Conceded: {playerStats["total_runs_conceded"]}</p>
         </div>
       </div>
-      <PlayerChart />
+      <PlayerChart playerStats={chartStats} playerName={playerName} />
     </div>
   );
 };
