@@ -1,4 +1,4 @@
-import PlayerCard from "../components/playerCard";
+import PlayerCard from "../components/PlayerCard";
 import playersData from "../../data/player_stats_data.json";
 
 export default function Home() {

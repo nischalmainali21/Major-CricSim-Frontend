@@ -1,4 +1,5 @@
 import React from "react";
+import PlayerChart from "./PlayerChart";
 
 const PlayerCard = ({ playerStats, playerName }) => {
   // console.log(playerStats);
@@ -50,6 +51,7 @@ const PlayerCard = ({ playerStats, playerName }) => {
           <p>Total Runs Conceded: {playerStats["total_runs_conceded"]}</p>
         </div>
       </div>
+      <PlayerChart />
     </div>
   );
 };
