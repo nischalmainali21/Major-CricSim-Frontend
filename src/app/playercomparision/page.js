@@ -38,7 +38,13 @@ export const PlayerComparision = () => {
           />
         </div>
       </div>
-      <div className="flex justify-start">
+      <div
+        className={`flex ${
+          firstSelectedPlayer && secondSelectedPlayer
+            ? "justify-start"
+            : "justify-center items-center"
+        }`}
+      >
         <div className="flex flex-col gap-10 justify-center items-center mb-10">
           <div>
             {firstSelectedPlayer && (
