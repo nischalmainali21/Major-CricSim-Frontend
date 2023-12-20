@@ -110,7 +110,7 @@ const PlayerChart = ({
   };
 
   return (
-    <div className="relative h-[75vh] w-[80vw] flex items-center justify-center">
+    <div className="relative h-[60vh] w-[55vw] flex items-center justify-center mt-10">
       <Radar
         data={chartData}
         redraw
