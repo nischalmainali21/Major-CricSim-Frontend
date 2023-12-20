@@ -35,16 +35,24 @@ export const PlayerComparision = () => {
         </div>
       </div>
       <div className="flex flex-col gap-10 justify-center items-center mb-10">
-        {selectedPlayers[0] &&
-          selectedPlayers[1] &&
-          selectedPlayers.map((playerName) => (
+        <div>
+          {firstSelectedPlayer && (
             <PlayerTable
-              key={playerName}
-              playerStats={playersData[playerName]}
-              playerName={playerName}
+              playerStats={playersData[firstSelectedPlayer]}
+              playerName={firstSelectedPlayer}
             />
-          ))}
+          )}
+        </div>
+        <div>
+          {secondSelectedPlayer && (
+            <PlayerTable
+              playerStats={playersData[secondSelectedPlayer]}
+              playerName={secondSelectedPlayer}
+            />
+          )}
+        </div>
       </div>
+
       <div className="w-full h-[200px]">
         {selectedPlayers[0] && selectedPlayers[1] && (
           <PlayerChart
