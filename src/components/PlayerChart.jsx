@@ -21,6 +21,10 @@ ChartJS.register(
   Legend
 );
 
+ChartJS.defaults.font.size = 20;
+ChartJS.defaults.font.style = "normal";
+ChartJS.defaults.font.weight = "bold";
+
 // export const data = {
 //   labels: ["Thing 1", "Thing 2", "Thing 3", "Thing 4", "Thing 5", "Thing 6"],
 //   datasets: [
@@ -66,37 +70,37 @@ const PlayerChart = ({
 
   const chartData = {
     labels: [
-      "battingStrikeRate",
-      "battingAverage",
-      "explosivityRating",
-      "bowlingStrikeRate",
-      "bowlingAverage",
-      "economy",
+      "BattingAverage",
+      "ExplosivityRating",
+      "BowlingStrikeRate",
+      "BowlingAverage",
+      "Economy",
+      "BattingStrikeRate",
     ],
     datasets: [
       {
-        label: `${firstPlayerName} Stats`,
+        label: `${firstPlayerName}`,
         data: [
-          scaleValue(firstChartStats.battingStrikeRate, 0, 400, 0, 20),
           scaleValue(firstChartStats.battingAverage, 0, 88, 0, 20),
           scaleValue(firstChartStats.explosivityRating, 0, 1, 0, 20),
           scaleValue(firstChartStats.bowlingStrikeRate, 0, 85, 0, 20),
           scaleValue(firstChartStats.bowlingAverage, 0, 126, 0, 20),
           scaleValue(firstChartStats.economy, 0, 36, 0, 20),
+          scaleValue(firstChartStats.battingStrikeRate, 0, 400, 0, 20),
         ],
-        backgroundColor: "rgba(37,186,142, 0.2)",
+        backgroundColor: "rgba(37,186,142, 0.3)",
         borderColor: "rgba(155, 99, 132, 1)",
         borderWidth: 1,
       },
       {
-        label: `${secondPlayerName} Stats`,
+        label: `${secondPlayerName}`,
         data: [
-          scaleValue(secondChartStats.battingStrikeRate, 0, 400, 0, 20),
           scaleValue(secondChartStats.battingAverage, 0, 88, 0, 20),
           scaleValue(secondChartStats.explosivityRating, 0, 1, 0, 20),
           scaleValue(secondChartStats.bowlingStrikeRate, 0, 85, 0, 20),
           scaleValue(secondChartStats.bowlingAverage, 0, 126, 0, 20),
           scaleValue(secondChartStats.economy, 0, 36, 0, 20),
+          scaleValue(secondChartStats.battingStrikeRate, 0, 400, 0, 20),
         ],
         backgroundColor: "rgba(255, 1, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
@@ -106,13 +110,29 @@ const PlayerChart = ({
   };
 
   return (
-    <div>
+    <div className="relative h-[75vh] w-[80vw] flex items-center justify-center">
       <Radar
         data={chartData}
-        width={800}
-        height={500}
+        redraw
         options={{
           maintainAspectRatio: false,
+          responsive: true,
+          animation: "easeInOutQuart",
+          scales: {
+            r: {
+              grid: {
+                circular: false,
+              },
+              pointLabels: {
+                color: "#030712",
+                font: "bold",
+              },
+              ticks: {
+                color: "#fca5a5",
+                backdropColor: "#EEEDE7",
+              },
+            },
+          },
         }}
       />
     </div>
