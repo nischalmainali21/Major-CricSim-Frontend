@@ -19,7 +19,7 @@ export const PlayerComparision = () => {
       <div className="font-bold text-xl flex justify-center items-center">
         Compare Players
       </div>
-      <div className="flex justify-around mb-2">
+      <div className="flex justify-between mb-6">
         <div className="flex flex-col gap-1">
           <h2>Select First Player:</h2>
           <Filter
@@ -39,17 +39,11 @@ export const PlayerComparision = () => {
           />
         </div>
       </div>
-      <div
-        className={`flex ${
-          firstSelectedPlayer && secondSelectedPlayer
-            ? "justify-start"
-            : "justify-center items-center"
-        }`}
-      >
-        <div className="flex flex-col gap-10 justify-center items-center mb-10">
+      <div className="w-full">
+        <div className="flex gap-10 justify-center items-center mb-10 w-full">
           {selectedPlayers[0] && selectedPlayers[1] ? (
-            <div>
-              <div>
+            <div className="flex flex-col justify-start items-center gap-5 w-full">
+              <div className="w-full">
                 <TwoPlayerTable
                   firstPlayerStats={playersData[firstSelectedPlayer]}
                   firstPlayerName={firstSelectedPlayer}

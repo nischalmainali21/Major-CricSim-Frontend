@@ -7,6 +7,8 @@ const TwoPlayerTable = ({
   secondPlayerName,
 }) => {
   // player batting stats
+  console.log("first", firstPlayerStats);
+  console.log("second", secondPlayerStats);
 
   const firstPlayerTableStats = new Object({
     // PlayerName: firstPlayerName,
@@ -27,10 +29,10 @@ const TwoPlayerTable = ({
   });
   const secondPlayerTableStats = new Object({
     // PlayerName: secondPlayerName,
-    "Matches Played": secondPlayerStats["batter_matches_played"],
+    "Bat Matches Played": secondPlayerStats["batter_matches_played"],
     "Runs Scored": secondPlayerStats["runs_scored"],
     "Batting Avg": secondPlayerStats["batting_average"],
-    "Strike Rate": secondPlayerStats["strike_rate_x"],
+    "Bat Strike Rate": secondPlayerStats["strike_rate_x"],
     Explosivity: secondPlayerStats["explosivity_rating"],
     "Half Century": secondPlayerStats["50_scored"],
     Century: secondPlayerStats["100_scored"],
@@ -42,21 +44,22 @@ const TwoPlayerTable = ({
     "Wickets Taken": secondPlayerStats["wickets_taken"],
     "Balls Bowled": secondPlayerStats["balls_bowled"],
   });
+  console.log(secondPlayerTableStats);
   //player bowling stats
   const labels = Object.keys(firstPlayerTableStats);
-  console.log(labels);
+  // console.log(labels);
 
   return (
     <div>
-      <table className="border-stone-600 border-[2px] text-center">
+      <table className="border-stone-600 border-[2px] text-center w-full">
         <thead className="border-stone-600 border-[2px] font-normal">
           <tr className="border-stone-800 border-b-[4px]">
             <th></th>
+            <th className="border-stone-600 border-r-[2px] font-bold text-xl p-2">
+              {firstPlayerName}
+            </th>
             <th className="border-stone-600 border-r-[2px] font-semibold text-xl p-1">
               Stats
-            </th>
-            <th className="border-stone-600 border-[2px] font-bold text-xl p-2">
-              {firstPlayerName}
             </th>
             <th className="border-stone-600 border-[2px] font-bold text-xl p-2">
               {secondPlayerName}
@@ -70,13 +73,19 @@ const TwoPlayerTable = ({
               className="border-stone-600 border-[2px] font-normal p-2"
             >
               <td></td>
+              <td className="border-stone-600 border-r-[2px] font-bold p-2">
+                {firstPlayerTableStats[item] != null
+                  ? firstPlayerTableStats[item]
+                  : "--"}
+              </td>
               <td className="border-stone-600 border-r-[2px] font-semibold p-2">
                 {item}
               </td>
-              <td className="border-stone-600 border-[2px] font-bold p-2">
-                {firstPlayerTableStats[item]}
+              <td className="font-bold p-2 ">
+                {secondPlayerTableStats[item] != null
+                  ? secondPlayerTableStats[item]
+                  : "--"}
               </td>
-              <td className="font-bold p-2 ">{secondPlayerTableStats[item]}</td>
             </tr>
           ))}
         </tbody>
