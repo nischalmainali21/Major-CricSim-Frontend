@@ -7,9 +7,14 @@ import PlayerChart from "@/components/PlayerChart";
 import TwoPlayerTable from "@/components/TwoPlayerTable";
 
 export const PlayerComparision = () => {
-  const [firstSelectedPlayer, setFirstSelectedPlayer] =
-    useState("A Ashish Reddy");
-  const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(null);
+  const items = Object.keys(playersData);
+  // console.log(items[Math.floor(Math.random() * items.length)]);
+  const [firstSelectedPlayer, setFirstSelectedPlayer] = useState(
+    items[Math.floor(Math.random() * items.length)]
+  );
+  const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(
+    items[Math.floor(Math.random() * items.length)]
+  );
 
   const selectedPlayers = [firstSelectedPlayer, secondSelectedPlayer];
   // console.log(selectedPlayers.length);
