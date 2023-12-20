@@ -6,7 +6,8 @@ import Filter from "@/components/Filter";
 import PlayerChart from "@/components/PlayerChart";
 
 export const PlayerComparision = () => {
-  const [firstSelectedPlayer, setFirstSelectedPlayer] = useState(null);
+  const [firstSelectedPlayer, setFirstSelectedPlayer] =
+    useState("A Ashish Reddy");
   const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(null);
 
   const selectedPlayers = [firstSelectedPlayer, secondSelectedPlayer];
@@ -14,6 +15,9 @@ export const PlayerComparision = () => {
 
   return (
     <div className="p-4 w-full">
+      <div className="font-bold text-xl flex justify-center items-center">
+        Compare Players
+      </div>
       <div className="flex justify-around mb-2">
         <div className="flex flex-col gap-1">
           <h2>Select First Player:</h2>
