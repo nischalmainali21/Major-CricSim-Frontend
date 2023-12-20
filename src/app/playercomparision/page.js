@@ -4,6 +4,7 @@ import playersData from "../../../data/player_stats_data.json";
 import PlayerTable from "@/components/PlayerTable";
 import Filter from "@/components/Filter";
 import PlayerChart from "@/components/PlayerChart";
+import TwoPlayerTable from "@/components/TwoPlayerTable";
 
 export const PlayerComparision = () => {
   const [firstSelectedPlayer, setFirstSelectedPlayer] =
@@ -11,7 +12,7 @@ export const PlayerComparision = () => {
   const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(null);
 
   const selectedPlayers = [firstSelectedPlayer, secondSelectedPlayer];
-  //   console.log(selectedPlayers);
+  // console.log(selectedPlayers.length);
 
   return (
     <div className="p-4 w-full">
@@ -46,32 +47,34 @@ export const PlayerComparision = () => {
         }`}
       >
         <div className="flex flex-col gap-10 justify-center items-center mb-10">
-          <div>
-            {firstSelectedPlayer && (
-              <PlayerTable
-                playerStats={playersData[firstSelectedPlayer]}
-                playerName={firstSelectedPlayer}
-              />
-            )}
-          </div>
-          <div>
-            {secondSelectedPlayer && (
-              <PlayerTable
-                playerStats={playersData[secondSelectedPlayer]}
-                playerName={secondSelectedPlayer}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="">
-          {selectedPlayers[0] && selectedPlayers[1] && (
-            <PlayerChart
-              firstPlayerStats={playersData[firstSelectedPlayer]}
-              firstPlayerName={firstSelectedPlayer}
-              secondPlayerStats={playersData[secondSelectedPlayer]}
-              secondPlayerName={secondSelectedPlayer}
-            />
+          {selectedPlayers[0] && selectedPlayers[1] ? (
+            <div>
+              <div>
+                <TwoPlayerTable
+                  firstPlayerStats={playersData[firstSelectedPlayer]}
+                  firstPlayerName={firstSelectedPlayer}
+                  secondPlayerStats={playersData[secondSelectedPlayer]}
+                  secondPlayerName={secondSelectedPlayer}
+                />
+              </div>
+              <div className="">
+                <PlayerChart
+                  firstPlayerStats={playersData[firstSelectedPlayer]}
+                  firstPlayerName={firstSelectedPlayer}
+                  secondPlayerStats={playersData[secondSelectedPlayer]}
+                  secondPlayerName={secondSelectedPlayer}
+                />
+              </div>
+            </div>
+          ) : (
+            <div>
+              {firstSelectedPlayer && (
+                <PlayerTable
+                  playerStats={playersData[firstSelectedPlayer]}
+                  playerName={firstSelectedPlayer}
+                />
+              )}
+            </div>
           )}
         </div>
       </div>
