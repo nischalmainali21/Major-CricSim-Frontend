@@ -7,6 +7,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -117,6 +118,7 @@ const AllPlayerTable = ({ playersData }) => {
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     columnResizeMode: "onChange",
   });
   return (
@@ -183,6 +185,29 @@ const AllPlayerTable = ({ playersData }) => {
           ))}
         </tbody>
       </table>
+      <br />
+      <div className="flex-start flex-col items-center justify-center">
+        <div className="mb-2">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </div>
+        <div className="flex items-center border-t gap-7">
+          <button
+            className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-lg text-center font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-md hover:bg-indigo-500"
+            onClick={() => table.previousPage()}
+            isDisabled={table.getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+          <button
+            className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-lg text-center font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-md hover:bg-indigo-500"
+            onClick={() => table.nextPage()}
+            isDisabled={table.getCanNextPage()}
+          >
+            {">"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
