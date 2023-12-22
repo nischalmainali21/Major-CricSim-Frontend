@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import TableFilter from "./TableFilter";
 
 const columns = [
   {
@@ -88,6 +89,7 @@ const columns = [
 
 const AllPlayerTable = ({ playersData }) => {
   const [data, setData] = useState(() => []);
+  const [columnFilters, setColumnFilter] = useState([]);
 
   useEffect(() => {
     const newList = [];
@@ -104,11 +106,15 @@ const AllPlayerTable = ({ playersData }) => {
   const table = useReactTable({
     data,
     columns,
+    state: {
+      columnFilters,
+    },
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
   });
   return (
     <div>
+      <TableFilter />
       <table
         // width={table.getTotalSize()}
         className={`border-[1px] border-stone-600 mb-2 font-normal w-[${table.getTotalSize()}]`}
