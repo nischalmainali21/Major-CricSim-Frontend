@@ -11,6 +11,7 @@ const columns = [
   {
     accessorKey: "player_name",
     header: "Player",
+    size: 50,
     cell: (props) => <p>{props?.getValue()}</p>,
   },
   {
@@ -104,12 +105,13 @@ const AllPlayerTable = ({ playersData }) => {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    columnResizeMode: "onChange",
   });
   return (
     <div>
       <table
-        width={table.getTotalSize()}
-        className="border-[1px] border-stone-600 mb-2 font-normal"
+        // width={table.getTotalSize()}
+        className={`border-[1px] border-stone-600 mb-2 font-normal w-[${table.getTotalSize()}]`}
       >
         <thead className="border-stone-600 border-[2px]">
           {table.getHeaderGroups().map((headerGroup) => (
@@ -117,9 +119,18 @@ const AllPlayerTable = ({ playersData }) => {
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="border-stone-600 border-[2px] text-gray-800"
+                  className={`relative border-stone-600 border-[2px] text-gray-800 w-[${header.getSize()}]`}
                 >
                   {header.column.columnDef.header}
+                  <div
+                    onMouseDown={header.getResizeHandler()}
+                    onTouchStart={header.getResizeHandler()}
+                    className={`absolute opacity-0 top-0 right-0 h-[100%] w-[5px] bg-[#27bbff] cursor-col-resize select-none touch-none rounded-[6px] hover:opacity-100 ${
+                      header.column.getIsResizing()
+                        ? "bg-[#2eff31] opacity-100"
+                        : ""
+                    }`}
+                  ></div>
                 </th>
               ))}
             </tr>
