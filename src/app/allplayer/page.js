@@ -4,7 +4,7 @@ import AllPlayerTable from "@/components/AllPlayerTable";
 
 const AllPlayer = () => {
   return (
-    <div>
+    <div className="p-4">
       <AllPlayerTable playersData={playersData} />
     </div>
   );
