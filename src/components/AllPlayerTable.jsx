@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import TableFilter from "./TableFilter";
@@ -102,7 +103,7 @@ const AllPlayerTable = ({ playersData }) => {
     setData(newList);
   }, []);
 
-  console.log(data[0]);
+  console.log(columnFilters);
   const table = useReactTable({
     data,
     columns,
@@ -110,11 +111,15 @@ const AllPlayerTable = ({ playersData }) => {
       columnFilters,
     },
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     columnResizeMode: "onChange",
   });
   return (
     <div>
-      <TableFilter />
+      <TableFilter
+        columnFilters={columnFilters}
+        setColumnFilter={setColumnFilter}
+      />
       <table
         // width={table.getTotalSize()}
         className={`border-[1px] border-stone-600 mb-2 font-normal w-[${table.getTotalSize()}]`}
