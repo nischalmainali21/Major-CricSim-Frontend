@@ -1,10 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { LiaSortSolid } from "react-icons/lia";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import TableFilter from "./TableFilter";
@@ -113,6 +116,7 @@ const AllPlayerTable = ({ playersData }) => {
     },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     columnResizeMode: "onChange",
   });
   return (
@@ -133,7 +137,22 @@ const AllPlayerTable = ({ playersData }) => {
                   key={header.id}
                   className={`relative border-stone-600 border-[2px] text-gray-800 w-[${header.getSize()}]`}
                 >
-                  {header.column.columnDef.header}
+                  <div className="flex items-center justify-center gap-1">
+                    {header.column.columnDef.header}
+                    {header.column.getCanSort() && (
+                      <span className="text-gray-600 text-xl hover:cursor-pointer">
+                        <LiaSortSolid
+                          onClick={header.column.getToggleSortingHandler()}
+                        />
+                      </span>
+                    )}
+                    {
+                      {
+                        asc: <FaArrowUp />,
+                        desc: <FaArrowDown />,
+                      }[header.column.getIsSorted()]
+                    }
+                  </div>
                   <div
                     onMouseDown={header.getResizeHandler()}
                     onTouchStart={header.getResizeHandler()}
