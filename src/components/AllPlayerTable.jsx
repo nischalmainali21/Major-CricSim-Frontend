@@ -13,8 +13,9 @@ const columns = [
   {
     accessorKey: "player_name",
     header: "Player",
-    size: 50,
     cell: (props) => <p>{props?.getValue()}</p>,
+    enableColumnFilter: true,
+    filterFn: "includesString",
   },
   {
     accessorKey: "batter_matches_played",
