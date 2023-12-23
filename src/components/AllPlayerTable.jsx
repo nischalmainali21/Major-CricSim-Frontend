@@ -23,7 +23,7 @@ const columns = [
   },
   {
     accessorKey: "batter_matches_played",
-    header: "Matches Played",
+    header: "Bat Matches",
     cell: (props) => <p>{props?.getValue()}</p>,
   },
   {
@@ -58,7 +58,7 @@ const columns = [
   },
   {
     accessorKey: "bowler_matches_played",
-    header: "Matches Played",
+    header: "Bowl Matches",
     cell: (props) => <p>{props.getValue()}</p>,
   },
   {
@@ -108,7 +108,7 @@ const AllPlayerTable = ({ playersData }) => {
     setData(newList);
   }, []);
 
-  console.log(columnFilters);
+  // console.log(columnFilters);
   const table = useReactTable({
     data,
     columns,
@@ -137,7 +137,7 @@ const AllPlayerTable = ({ playersData }) => {
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className={`relative border-stone-600 border-[2px] text-gray-800 w-[${header.getSize()}]`}
+                  className={`relative border-stone-600 border-[2px]  text-[#6D6A75 ] w-[${header.getSize()}] bg-[#F3FCF0]`}
                 >
                   <div className="flex items-center justify-center gap-1">
                     {header.column.columnDef.header}
@@ -195,14 +195,14 @@ const AllPlayerTable = ({ playersData }) => {
           <button
             className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-lg text-center font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-md hover:bg-indigo-500"
             onClick={() => table.previousPage()}
-            isDisabled={table.getCanPreviousPage()}
+            disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
           <button
             className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-lg text-center font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-md hover:bg-indigo-500"
             onClick={() => table.nextPage()}
-            isDisabled={table.getCanNextPage()}
+            disabled={!table.getCanNextPage()}
           >
             {">"}
           </button>
