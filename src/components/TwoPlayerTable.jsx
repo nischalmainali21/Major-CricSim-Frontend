@@ -7,8 +7,8 @@ const TwoPlayerTable = ({
   secondPlayerName,
 }) => {
   // player batting stats
-  console.log("first", firstPlayerStats);
-  console.log("second", secondPlayerStats);
+  // console.log("first", firstPlayerStats);
+  // console.log("second", secondPlayerStats);
 
   const firstPlayerTableStats = new Object({
     // PlayerName: firstPlayerName,
@@ -44,7 +44,7 @@ const TwoPlayerTable = ({
     "Wickets Taken": secondPlayerStats["wickets_taken"],
     "Balls Bowled": secondPlayerStats["balls_bowled"],
   });
-  console.log(secondPlayerTableStats);
+  // console.log(secondPlayerTableStats);
   //player bowling stats
   const labels = Object.keys(firstPlayerTableStats);
   // console.log(labels);

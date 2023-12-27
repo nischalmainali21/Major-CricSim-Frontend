@@ -10,10 +10,10 @@ export const PlayerComparision = () => {
   const items = Object.keys(playersData);
   // console.log(items[Math.floor(Math.random() * items.length)]);
   const [firstSelectedPlayer, setFirstSelectedPlayer] = useState(
-    items[Math.floor(Math.random() * items.length)]
+    () => items[Math.floor(Math.random() * items.length)]
   );
   const [secondSelectedPlayer, setSecondSelectedPlayer] = useState(
-    items[Math.floor(Math.random() * items.length)]
+    () => items[Math.floor(Math.random() * items.length)]
   );
 
   const selectedPlayers = [firstSelectedPlayer, secondSelectedPlayer];
