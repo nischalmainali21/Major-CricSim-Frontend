@@ -28,7 +28,7 @@ const AddPlayer = ({ selectedPlayer, setSelectedPlayer }) => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[300px] justify-between"
+            className="w-[250px] justify-between"
           >
             {selectedPlayer
               ? playersName.unique_players.find(
@@ -38,7 +38,7 @@ const AddPlayer = ({ selectedPlayer, setSelectedPlayer }) => {
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-0 h-[400px]">
+        <PopoverContent className="w-[250px] p-0 h-[350px]">
           <Command>
             <CommandInput placeholder="Search Player..." />
             <CommandEmpty>No Player Found</CommandEmpty>

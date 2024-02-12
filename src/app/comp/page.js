@@ -93,7 +93,13 @@ const Comp = () => {
   //   (player) => player.toLowerCase() === selectedPlayer
   // );
   return (
-    <div className="flex items-center justify-center gap-10 p-6">
+    <div className="flex flex-col items-center justify-center gap-10 p-6">
+      <div className="">
+        <AddPlayer
+          selectedPlayer={selectedPlayer}
+          setSelectedPlayer={setSelectedPlayer}
+        />
+      </div>
       <div className="flex gap-6">
         {allSelectedPlayers.map((player) => {
           const actualName = playersName.unique_players.find(
@@ -108,12 +114,6 @@ const Comp = () => {
             />
           );
         })}
-      </div>
-      <div>
-        <AddPlayer
-          selectedPlayer={selectedPlayer}
-          setSelectedPlayer={setSelectedPlayer}
-        />
       </div>
     </div>
   );

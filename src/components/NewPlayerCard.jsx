@@ -11,7 +11,6 @@ import StatProgress from "./StatProgress";
 import { labeledPlayerStats } from "@/lib/constant";
 
 const NewPlayerCard = ({ playerName, playerStats, StandardStats }) => {
-  //   console.log(playerStats, StandardStats);
   return (
     <Card>
       <CardHeader>
