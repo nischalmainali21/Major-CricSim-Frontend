@@ -111,6 +111,7 @@ const Comp = () => {
               playerName={actualName}
               playerStats={playersData[actualName]}
               StandardStats={StandardStats}
+              setAllSelectedPlayers={setAllSelectedPlayers}
             />
           );
         })}

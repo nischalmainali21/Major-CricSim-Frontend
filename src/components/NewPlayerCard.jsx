@@ -9,12 +9,30 @@ import {
 } from "@/components/ui/card";
 import StatProgress from "./StatProgress";
 import { labeledPlayerStats } from "@/lib/constant";
+import { X } from "lucide-react";
 
-const NewPlayerCard = ({ playerName, playerStats, StandardStats }) => {
+const NewPlayerCard = ({
+  playerName,
+  playerStats,
+  StandardStats,
+  setAllSelectedPlayers,
+}) => {
+  function handleRemovePlayer() {
+    setAllSelectedPlayers((prevSelectedPlayers) =>
+      prevSelectedPlayers.filter(
+        (player) => player !== playerName.toLowerCase()
+      )
+    );
+  }
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{playerName}</CardTitle>
+        <CardTitle className="flex justify-between">
+          {playerName}
+          <span className="cursor-pointer" onClick={handleRemovePlayer}>
+            <X />
+          </span>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-2">
