@@ -18,6 +18,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const columns = [
   {
@@ -101,6 +104,7 @@ const columns = [
 
 const NewAllPlayerTable = ({ playersData }) => {
   const [data, setData] = useState(() => []);
+  const [columnFilters, setColumnFilter] = useState([]);
 
   useEffect(() => {
     const newList = [];
@@ -116,9 +120,10 @@ const NewAllPlayerTable = ({ playersData }) => {
   const table = useReactTable({
     data,
     columns,
-    // state: { columnFilters },
+    state: { columnFilters },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilter,
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     columnResizeMode: "onChange",
@@ -126,6 +131,16 @@ const NewAllPlayerTable = ({ playersData }) => {
 
   return (
     <div>
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter Player..."
+          value={table.getColumn("player_name")?.getFilterValue() ?? ""}
+          onChange={(event) =>
+            table.getColumn("player_name")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -133,12 +148,27 @@ const NewAllPlayerTable = ({ playersData }) => {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                    <div className="flex items-center justify-between">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                      {header.column.getCanSort() && (
+                        <span className="hover:cursor-pointer">
+                          <ArrowUpDown
+                            onClick={header.column.getToggleSortingHandler()}
+                          />
+                        </span>
+                      )}
+                      {
+                        {
+                          asc: <ArrowUp />,
+                          desc: <ArrowDown />,
+                        }[header.column.getIsSorted()]
+                      }
+                    </div>
                   </TableHead>
                 ))}
               </TableRow>
@@ -173,6 +203,24 @@ const NewAllPlayerTable = ({ playersData }) => {
             )}
           </TableBody>
         </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
       </div>
     </div>
   );
