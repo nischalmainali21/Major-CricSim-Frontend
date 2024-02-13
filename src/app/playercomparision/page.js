@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import playersData from "../../../data/player_stats_data.json";
-import PlayerTable from "@/components/PlayerTable";
-import Filter from "@/components/Filter";
-import PlayerChart from "@/components/PlayerChart";
-import TwoPlayerTable from "@/components/TwoPlayerTable";
+import PlayerTable from "@/components/unused/PlayerTable";
+import Filter from "@/components/unused/Filter";
+import PlayerChart from "@/components/unused/PlayerChart";
+import TwoPlayerTable from "@/components/unused/TwoPlayerTable";
 
 export const PlayerComparision = () => {
   const items = Object.keys(playersData);
