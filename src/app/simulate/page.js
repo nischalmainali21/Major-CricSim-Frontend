@@ -14,7 +14,7 @@ async function getData() {
 }
 
 async function Simulate() {
-  const data = await getData();
+  // const data = await getData();
   return <div>Simulate</div>;
 }
 
