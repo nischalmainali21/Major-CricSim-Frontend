@@ -1,15 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Footer = () => {
   return (
     <div className="mt-40">
       <footer className="p-4 bg-slate-200 border- sm:p-6 shadow-inner dark:bg-gray-900">
         <div className="md:flex md:justify-between ">
-          <div className="mb-6 md:mb-0">
+          <div className="mb-6 md:mb-0 flex flex-col gap-2">
             <span className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">
               CricSim.
             </span>
+            <ThemeToggle className="ml-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
