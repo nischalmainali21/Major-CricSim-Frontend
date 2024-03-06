@@ -1,101 +1,110 @@
 import React from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
+import { Separator } from "./ui/separator";
 
 const Footer = () => {
   return (
-    <div className="mt-40">
-      <footer className="p-4 bg-slate-200 border- sm:p-6 shadow-inner dark:bg-gray-900">
-        <div className="md:flex md:justify-between ">
-          <div className="mb-6 md:mb-0 flex flex-col gap-2">
-            <span className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">
-              CricSim.
-            </span>
+    <>
+      <footer className="p-4   sm:p-6   mt-40">
+        <Separator className="my-6" />
+        <div className="flex justify-between">
+          <div className="md:flex md:justify-start gap-36">
+            <div className="mb-6 md:mb-0 flex flex-col gap-2">
+              <span className="self-center text-4xl font-semibold whitespace-nowrap ">
+                CricSim.
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                <h2 className="mb-6 text-sm font-semibold  uppercase e">
+                  Pages
+                </h2>
+                <ul className="  flex flex-col gap-4">
+                  <li className="hover:underline">
+                    <Link href="/">Home</Link>
+                  </li>
+                  <li className="hover:underline">
+                    <Link href="/allplayer">All Player</Link>
+                  </li>
+                  <li className="hover:underline">
+                    <Link href="/comp">Compare</Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="mb-6 text-sm font-semibold  uppercase ">
+                  Follow us
+                </h2>
+                <ul className=" ">
+                  <li className="mb-4">
+                    <a
+                      href="https://github.com/nischalmainali21/Major-CricSim-Frontend"
+                      className="hover:underline "
+                      target="_blank"
+                    >
+                      Github
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="mb-6 text-sm font-semibold  uppercase ">
+                  Contact Us
+                </h2>
+                <ul className=" ">
+                  <li className="mb-4">
+                    <div className="flex grid-cols-2 gap-x-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                        />
+                      </svg>
+
+                      <p>+977 9861444092</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="flex grid-cols-2 gap-x-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
+                        />
+                      </svg>
+
+                      <p> CricSim@gmail.com</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
             <ThemeToggle className="ml-4" />
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Pages
-              </h2>
-              <ul className="text-gray-600 dark:text-gray-400 flex flex-col gap-4">
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <Link href="/allplayer">All Player</Link>
-                </li>
-                <li>
-                  <Link href="/comp">Compare</Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Follow us
-              </h2>
-              <ul className="text-gray-600 dark:text-gray-400">
-                <li className="mb-4">
-                  <a
-                    href="https://github.com/nischalmainali21/Major-CricSim-Frontend"
-                    className="hover:underline "
-                  >
-                    Github
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Contact Us
-              </h2>
-              <ul className="text-gray-600 dark:text-gray-400">
-                <li className="mb-4">
-                  <div className="flex grid-cols-2 gap-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                      />
-                    </svg>
-
-                    <p>+977 9861444092</p>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex grid-cols-2 gap-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
-                      />
-                    </svg>
-
-                    <p> CricSim@gmail.com</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+
+        <Separator className="my-6" />
+
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm text-gray-500 sm:text-center ">
             © 2024 CricSim™. All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
@@ -188,7 +197,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
