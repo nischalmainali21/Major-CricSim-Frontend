@@ -17,20 +17,20 @@ const LandingFeaturesCard = ({
   buttonLink,
 }) => {
   return (
-    <Card className="p-20">
+    <Card className="p-4 md:p-6 lg:p-10">
       <CardHeader>
         <CardTitle>
           <div className="gap-5 flex flex-col items-start">
             {svg}
-            <span>{title}</span>
+            <span className="md:text-3xl">{title}</span>
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="mt-5">
+      <CardContent className="mt-5 text-xl md:text-2xl">
         <p>{description}</p>
       </CardContent>
       <CardFooter className="mt-2">
-        <Button>
+        <Button className="text-xl py-6">
           <Link href={buttonLink}>{buttonContent}</Link>
         </Button>
       </CardFooter>

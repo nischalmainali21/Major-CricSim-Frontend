@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex justify-between">
           <div className="md:flex md:justify-start gap-36">
             <div className="mb-6 md:mb-0 flex flex-col gap-2">
-              <span className="self-center text-4xl font-semibold whitespace-nowrap ">
+              <span className=" text-4xl font-semibold whitespace-nowrap ">
                 CricSim.
               </span>
             </div>

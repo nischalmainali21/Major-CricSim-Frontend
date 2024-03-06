@@ -78,8 +78,7 @@ const landingFeatures = [
       </svg>
     ),
     title: "Player Insights",
-    description:
-      "Unlock the secrets of your players&apos; performance with comprehensive Player Insights, empowering you to make informed decisions and optimize strategies for success.",
+    description: `Unlock the secrets of your players' performance with comprehensive Player Insights, empowering you to make informed decisions and optimize strategies for success.`,
     buttonContent: "Watch Players",
     buttonLink: "/allplayer",
   },
