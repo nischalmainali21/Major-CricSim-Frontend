@@ -14,7 +14,7 @@ const Landing = () => {
           width={100}
           height={100}
           alt="landing"
-          className="w-full h-full object-cover hidden lg:block"
+          className="w-full h-full object-cover "
         />
         <div className="w-full h-full  absolute top-0 flex flex-col justify-center text-left md:text-6xl lg:text-5xl text-4xl font-semibold font-body text-black p-9 mx-5 ">
           <h1 className="mt-20">Empower Your Game</h1>
