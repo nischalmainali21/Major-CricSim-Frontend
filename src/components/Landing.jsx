@@ -2,11 +2,12 @@ import React from "react";
 import LandingFeatures from "./LandingFeatures";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const Landing = () => {
   return (
     <div>
-      <div className=" w-full h-screen static ">
+      <div className=" w-full h-screen static mb-10">
         {/* <img className=' w-full h-full object-cover hidden lg:block ' src={sane} /> */}
         <Image
           src="/landing.jpg"
@@ -25,9 +26,9 @@ const Landing = () => {
               Confidence.
             </p>
             <div className="py-10 mt-10 font-sembold">
-              <button className="px-7 py-4 rounded-full bg-[#f9a826] border-[#f9a826] hover:text-white">
+              <Button className="px-10 py-6">
                 <Link href="/simulate">Start Simulation</Link>
-              </button>
+              </Button>
             </div>
           </div>
         </div>
