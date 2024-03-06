@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="w-screen h-[80px] drop-shadow-lg relative z-10 shadow-xl">
+    <div className="w-full h-[80px] drop-shadow-lg relative z-10 shadow-xl">
       <div className="px-20 flex justify-between items-center w-full h-full">
         <h1 className="font-bold mx-4 text-3xl md:text-3xl xl:text-5xl">
           CricSim.
