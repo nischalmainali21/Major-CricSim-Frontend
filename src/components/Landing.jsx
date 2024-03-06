@@ -1,5 +1,5 @@
 import React from "react";
-import Landing_features from "./Landing_features";
+import LandingFeatures from "./LandingFeatures";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -33,7 +33,7 @@ const Landing = () => {
         </div>
       </div>
       <div>
-        <Landing_features />
+        <LandingFeatures />
       </div>
     </div>
   );
