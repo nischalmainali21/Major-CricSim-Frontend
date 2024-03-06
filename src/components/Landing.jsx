@@ -15,6 +15,7 @@ const Landing = () => {
             alt="landing"
             className=" object-cover"
             fill
+            priority
           />
         </div>
         <div className=" h-full  absolute top-0 flex flex-col justify-center text-left md:text-6xl lg:text-5xl text-5xl font-semibold  text-black sm:p-9 mx-5 ">
