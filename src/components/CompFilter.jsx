@@ -3,10 +3,11 @@ import React from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 import { labeledPlayerStats, battingStats, bowlingStats } from "@/lib/constant";
+import { useSelectedFilters } from "../../context/SelectedFiltersContext";
 
 const CompFilter = () => {
   //holds the currently selected filter
-  const [selectedFilters, setSelectedFilters] = React.useState([]);
+  const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 
   const filteredBattingStats = Object.fromEntries(
     Object.entries(labeledPlayerStats).filter(([key, _]) =>
