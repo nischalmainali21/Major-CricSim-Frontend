@@ -59,6 +59,68 @@ const lowerBetterStats = [
   "total_runs_conceded",
 ];
 
+const battingStats = [
+  "batter_matches_played",
+  "runs_scored",
+  "dismissals",
+  "balls_faced",
+  "0s_scored",
+  "1s_scored",
+  "2s_scored",
+  "4s_scored",
+  "high_score",
+  "25_scored",
+  "50_scored",
+  "75_scored",
+  "100_scored",
+  "strike_rate_x",
+  "batting_average",
+  "explosivity_rating",
+];
+
+const bowlingStats = [
+  "bowler_matches_played",
+  "runs_conceded",
+  "wickets_taken",
+  "balls_bowled",
+  "0_wickets_taken",
+  "1_wickets_taken",
+  "2_wickets_taken",
+  "3_wickets_taken",
+  "4_wickets_taken",
+  "5_wickets_taken",
+  "6_wickets_taken",
+  "0s_conceded",
+  "1s_conceded",
+  "2s_conceded",
+  "4s_conceded",
+  "6s_conceded",
+  "highest_conceded",
+  "strike_rate_y",
+  "bowling_average",
+  "economy",
+  "total_runs_conceded",
+];
+
+const defaultFilterStats = [
+  "batter_matches_played",
+  "runs_scored",
+  "dismissals",
+  "balls_faced",
+  "50_scored",
+  "100_scored",
+  "strike_rate_x",
+  "batting_average",
+  "explosivity_rating",
+  "bowler_matches_played",
+  "runs_conceded",
+  "wickets_taken",
+  "balls_bowled",
+  "strike_rate_y",
+  "bowling_average",
+  "economy",
+];
+
 const landingFeatures = [
   {
     svg: (
@@ -135,4 +197,11 @@ const landingFeatures = [
   },
 ];
 
-export { labeledPlayerStats, lowerBetterStats, landingFeatures };
+export {
+  labeledPlayerStats,
+  lowerBetterStats,
+  landingFeatures,
+  battingStats,
+  bowlingStats,
+  defaultFilterStats,
+};

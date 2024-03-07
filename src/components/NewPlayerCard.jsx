@@ -10,6 +10,7 @@ import {
 import StatProgress from "./StatProgress";
 import { labeledPlayerStats } from "@/lib/constant";
 import { X } from "lucide-react";
+import { useSelectedFilters } from "../../context/SelectedFiltersContext";
 
 const NewPlayerCard = ({
   playerName,
@@ -17,6 +18,8 @@ const NewPlayerCard = ({
   StandardStats,
   setAllSelectedPlayers,
 }) => {
+  const { selectedFilters } = useSelectedFilters();
+
   function handleRemovePlayer() {
     setAllSelectedPlayers((prevSelectedPlayers) =>
       prevSelectedPlayers.filter(
@@ -36,15 +39,17 @@ const NewPlayerCard = ({
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-2">
-          {Object.entries(labeledPlayerStats).map(([stat, { LabelName }]) => (
-            <StatProgress
-              key={stat}
-              labelName={LabelName}
-              statName={stat}
-              statValue={playerStats[stat]}
-              standardStatValue={StandardStats[stat]}
-            />
-          ))}
+          {Object.entries(labeledPlayerStats)
+            .filter(([stat]) => selectedFilters.includes(stat))
+            .map(([stat, { LabelName }]) => (
+              <StatProgress
+                key={stat}
+                labelName={LabelName}
+                statName={stat}
+                statValue={playerStats[stat]}
+                standardStatValue={StandardStats[stat]}
+              />
+            ))}
         </div>
       </CardContent>
     </Card>
