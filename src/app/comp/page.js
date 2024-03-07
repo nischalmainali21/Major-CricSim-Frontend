@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import CompFilter from "@/components/CompFilter";
+import CompSheetFilter from "@/components/CompSheetFilter";
 
 const StandardStats = {
   batter_matches_played: 0.0,
@@ -132,19 +133,7 @@ const Comp = () => {
         </div>
       </div>
       <div className="absolute right-16 top-[24px]">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline">Open Filter</Button>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Filter Stats</SheetTitle>
-            </SheetHeader>
-            <div className="py-4">
-              <CompFilter />
-            </div>
-          </SheetContent>
-        </Sheet>
+        <CompSheetFilter />
       </div>
     </div>
   );

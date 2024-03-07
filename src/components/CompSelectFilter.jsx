@@ -15,7 +15,10 @@ const CompSelectFilter = ({
         checked={selectedFilters.includes(stat)}
         onCheckedChange={() => handleFilterChange(stat)}
       />
-      <div className="grid gap-1.5 leading-none">
+      <div
+        className="grid gap-1.5 leading-none"
+        onClick={() => handleFilterChange(stat)}
+      >
         <label
           htmlFor={stat}
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
