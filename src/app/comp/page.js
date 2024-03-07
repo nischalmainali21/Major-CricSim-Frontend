@@ -5,6 +5,17 @@ import playersData from "../../../data/player_stats_data.json";
 import NewPlayerCard from "@/components/NewPlayerCard";
 import playersName from "../../../data/unique_players.json";
 import { lowerBetterStats } from "@/lib/constant";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import CompFilter from "@/components/CompFilter";
+
 const StandardStats = {
   batter_matches_played: 0.0,
   runs_scored: 0.0,
@@ -93,28 +104,45 @@ const Comp = () => {
   //   (player) => player.toLowerCase() === selectedPlayer
   // );
   return (
-    <div className="flex flex-col items-center justify-center gap-10 p-6">
+    <div className="relative">
       <div className="">
-        <AddPlayer
-          selectedPlayer={selectedPlayer}
-          setSelectedPlayer={setSelectedPlayer}
-        />
-      </div>
-      <div className="flex gap-6">
-        {allSelectedPlayers.map((player) => {
-          const actualName = playersName.unique_players.find(
-            (item) => item.toLowerCase() === player
-          );
-          return (
-            <NewPlayerCard
-              key={actualName}
-              playerName={actualName}
-              playerStats={playersData[actualName]}
-              StandardStats={StandardStats}
-              setAllSelectedPlayers={setAllSelectedPlayers}
+        <div className="flex flex-col items-center justify-center gap-10 p-6">
+          <div className="">
+            <AddPlayer
+              selectedPlayer={selectedPlayer}
+              setSelectedPlayer={setSelectedPlayer}
             />
-          );
-        })}
+          </div>
+          <div className="flex gap-6">
+            {allSelectedPlayers.map((player) => {
+              const actualName = playersName.unique_players.find(
+                (item) => item.toLowerCase() === player
+              );
+              return (
+                <NewPlayerCard
+                  key={actualName}
+                  playerName={actualName}
+                  playerStats={playersData[actualName]}
+                  StandardStats={StandardStats}
+                  setAllSelectedPlayers={setAllSelectedPlayers}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <div className="absolute right-16 top-[24px]">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline">Open Filter</Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Filter Stats</SheetTitle>
+            </SheetHeader>
+            <CompFilter />
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   );
