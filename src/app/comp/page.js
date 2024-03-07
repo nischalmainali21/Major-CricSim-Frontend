@@ -140,7 +140,9 @@ const Comp = () => {
             <SheetHeader>
               <SheetTitle>Filter Stats</SheetTitle>
             </SheetHeader>
-            <CompFilter />
+            <div className="py-4">
+              <CompFilter />
+            </div>
           </SheetContent>
         </Sheet>
       </div>

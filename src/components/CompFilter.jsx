@@ -1,12 +1,21 @@
 "use client";
 import React from "react";
-import { ScrollArea } from "./ui/scroll-area";
-import { Checkbox } from "@/components/ui/checkbox";
 import { labeledPlayerStats, battingStats, bowlingStats } from "@/lib/constant";
 import { useSelectedFilters } from "../../context/SelectedFiltersContext";
+import CompSelectFilter from "./CompSelectFilter";
+import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Plus } from "lucide-react";
+import { ScrollArea } from "./ui/scroll-area";
 
 const CompFilter = () => {
   //holds the currently selected filter
+  const [isOpenBat, setIsOpenBat] = React.useState(false);
+  const [isOpenBowl, setIsOpenBowl] = React.useState(false);
   const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 
   const filteredBattingStats = Object.fromEntries(
@@ -36,63 +45,77 @@ const CompFilter = () => {
     }
   };
 
-  console.log(selectedFilters);
-
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
+      {/* batting */}
       <div>
-        <h1>Batting Stats</h1>
-        <ScrollArea>
-          <div>
-            {Object.entries(filteredBattingStats).map(
-              ([stat, { LabelName }]) => (
-                <div key={stat} className="items-top flex space-x-2">
-                  <Checkbox
-                    name={stat}
-                    value={stat}
-                    checked={selectedFilters.includes(stat)}
-                    onCheckedChange={() => handleFilterChange(stat)}
-                  />
-                  <div className="grid gap-1.5 leading-none">
-                    <label
-                      htmlFor={stat}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {LabelName}
-                    </label>
-                  </div>
-                </div>
-              )
-            )}
+        <Collapsible
+          open={isOpenBat}
+          onOpenChange={setIsOpenBat}
+          className="w-[350px] space-y-2"
+        >
+          <div className="flex items-center justify-between space-x-4 px-4">
+            <h4 className="text-sm font-semibold">Batting Stats</h4>
+            <CollapsibleTrigger asChild>
+              <Button variant="ghost" size="sm" className="w-9 p-0">
+                <Plus className="h-4 w-4" />
+                <span className="sr-only">Toggle</span>
+              </Button>
+            </CollapsibleTrigger>
           </div>
-        </ScrollArea>
+          <CollapsibleContent className="space-y-2 flex flex-col justify-center ml-6 ">
+            <ScrollArea className="border rounded-sm p-4 h-[430px]">
+              <div className="flex flex-col gap-2">
+                {Object.entries(filteredBattingStats).map(
+                  ([stat, { LabelName }]) => (
+                    <CompSelectFilter
+                      key={stat}
+                      stat={stat}
+                      LabelName={LabelName}
+                      selectedFilters={selectedFilters}
+                      handleFilterChange={handleFilterChange}
+                    />
+                  )
+                )}
+              </div>
+            </ScrollArea>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
+      {/* bowling */}
       <div>
-        <h1>Bowling Stats</h1>
-        <ScrollArea>
-          <div>
-            {Object.entries(filteredBowlingStats).map(
-              ([stat, { LabelName }]) => (
-                <div key={stat} className="items-top flex space-x-2">
-                  <Checkbox
-                    name={stat}
-                    value={stat}
-                    checked={selectedFilters.includes(stat)}
-                    onCheckedChange={() => handleFilterChange(stat)}
-                  />
-                  <div className="grid gap-1.5 leading-none">
-                    <label
-                      htmlFor={stat}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {LabelName}
-                    </label>
-                  </div>
-                </div>
-              )
-            )}
+        <Collapsible
+          open={isOpenBowl}
+          onOpenChange={setIsOpenBowl}
+          className="w-[350px] space-y-2"
+        >
+          <div className="flex items-center justify-between space-x-4 px-4">
+            <h4 className="text-sm font-semibold">Bowling Stats</h4>
+            <CollapsibleTrigger asChild>
+              <Button variant="ghost" size="sm" className="w-9 p-0">
+                <Plus className="h-4 w-4" />
+                <span className="sr-only">Toggle</span>
+              </Button>
+            </CollapsibleTrigger>
           </div>
-        </ScrollArea>
+          <CollapsibleContent className="space-y-2 flex flex-col justify-center ml-6 ">
+            <ScrollArea className="border rounded-sm p-4 h-[430px]">
+              <div className="flex flex-col gap-2">
+                {Object.entries(filteredBowlingStats).map(
+                  ([stat, { LabelName }]) => (
+                    <CompSelectFilter
+                      key={stat}
+                      stat={stat}
+                      LabelName={LabelName}
+                      selectedFilters={selectedFilters}
+                      handleFilterChange={handleFilterChange}
+                    />
+                  )
+                )}
+              </div>
+            </ScrollArea>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </div>
   );
