@@ -1,10 +1,11 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { defaultFilterStats } from "@/lib/constant";
 
 const SelectedFiltersContext = createContext(null);
 
 export const SelectedFiltersProvider = ({ children }) => {
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState(defaultFilterStats);
   return (
     <SelectedFiltersContext.Provider
       value={{ selectedFilters, setSelectedFilters }}

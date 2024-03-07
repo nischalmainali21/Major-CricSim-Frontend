@@ -102,6 +102,25 @@ const bowlingStats = [
   "total_runs_conceded",
 ];
 
+const defaultFilterStats = [
+  "batter_matches_played",
+  "runs_scored",
+  "dismissals",
+  "balls_faced",
+  "50_scored",
+  "100_scored",
+  "strike_rate_x",
+  "batting_average",
+  "explosivity_rating",
+  "bowler_matches_played",
+  "runs_conceded",
+  "wickets_taken",
+  "balls_bowled",
+  "strike_rate_y",
+  "bowling_average",
+  "economy",
+];
+
 const landingFeatures = [
   {
     svg: (
@@ -184,4 +203,5 @@ export {
   landingFeatures,
   battingStats,
   bowlingStats,
+  defaultFilterStats,
 };
