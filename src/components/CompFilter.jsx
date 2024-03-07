@@ -2,20 +2,10 @@
 import React from "react";
 import { labeledPlayerStats, battingStats, bowlingStats } from "@/lib/constant";
 import { useSelectedFilters } from "../../context/SelectedFiltersContext";
-import CompSelectFilter from "./CompSelectFilter";
-import { Button } from "@/components/ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Plus } from "lucide-react";
-import { ScrollArea } from "./ui/scroll-area";
+import CompCollapsibleFilter from "./CompCollapsibleFilter";
 
 const CompFilter = () => {
   //holds the currently selected filter
-  const [isOpenBat, setIsOpenBat] = React.useState(false);
-  const [isOpenBowl, setIsOpenBowl] = React.useState(false);
   const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 
   const filteredBattingStats = Object.fromEntries(
@@ -26,6 +16,11 @@ const CompFilter = () => {
   const filteredBowlingStats = Object.fromEntries(
     Object.entries(labeledPlayerStats).filter(([key, _]) =>
       bowlingStats.includes(key)
+    )
+  );
+  const ActiveStats = Object.fromEntries(
+    Object.entries(labeledPlayerStats).filter(([key, _]) =>
+      selectedFilters.includes(key)
     )
   );
 
@@ -47,75 +42,29 @@ const CompFilter = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* batting */}
       <div>
-        <Collapsible
-          open={isOpenBat}
-          onOpenChange={setIsOpenBat}
-          className="w-[350px] space-y-2"
-        >
-          <div className="flex items-center justify-between space-x-4 px-4">
-            <h4 className="text-sm font-semibold">Batting Stats</h4>
-            <CollapsibleTrigger asChild>
-              <Button variant="ghost" size="sm" className="w-9 p-0">
-                <Plus className="h-4 w-4" />
-                <span className="sr-only">Toggle</span>
-              </Button>
-            </CollapsibleTrigger>
-          </div>
-          <CollapsibleContent className="space-y-2 flex flex-col justify-center ml-6 ">
-            <ScrollArea className="border rounded-sm p-4 h-[430px]">
-              <div className="flex flex-col gap-2">
-                {Object.entries(filteredBattingStats).map(
-                  ([stat, { LabelName }]) => (
-                    <CompSelectFilter
-                      key={stat}
-                      stat={stat}
-                      LabelName={LabelName}
-                      selectedFilters={selectedFilters}
-                      handleFilterChange={handleFilterChange}
-                    />
-                  )
-                )}
-              </div>
-            </ScrollArea>
-          </CollapsibleContent>
-        </Collapsible>
+        <CompCollapsibleFilter
+          title="Active Stats"
+          selectedFilters={selectedFilters}
+          handleFilterChange={handleFilterChange}
+          filteredStats={ActiveStats}
+        />
       </div>
-      {/* bowling */}
       <div>
-        <Collapsible
-          open={isOpenBowl}
-          onOpenChange={setIsOpenBowl}
-          className="w-[350px] space-y-2"
-        >
-          <div className="flex items-center justify-between space-x-4 px-4">
-            <h4 className="text-sm font-semibold">Bowling Stats</h4>
-            <CollapsibleTrigger asChild>
-              <Button variant="ghost" size="sm" className="w-9 p-0">
-                <Plus className="h-4 w-4" />
-                <span className="sr-only">Toggle</span>
-              </Button>
-            </CollapsibleTrigger>
-          </div>
-          <CollapsibleContent className="space-y-2 flex flex-col justify-center ml-6 ">
-            <ScrollArea className="border rounded-sm p-4 h-[430px]">
-              <div className="flex flex-col gap-2">
-                {Object.entries(filteredBowlingStats).map(
-                  ([stat, { LabelName }]) => (
-                    <CompSelectFilter
-                      key={stat}
-                      stat={stat}
-                      LabelName={LabelName}
-                      selectedFilters={selectedFilters}
-                      handleFilterChange={handleFilterChange}
-                    />
-                  )
-                )}
-              </div>
-            </ScrollArea>
-          </CollapsibleContent>
-        </Collapsible>
+        <CompCollapsibleFilter
+          title="Batting Stats"
+          selectedFilters={selectedFilters}
+          handleFilterChange={handleFilterChange}
+          filteredStats={filteredBattingStats}
+        />
+      </div>
+      <div>
+        <CompCollapsibleFilter
+          title="Bowling Stats"
+          selectedFilters={selectedFilters}
+          handleFilterChange={handleFilterChange}
+          filteredStats={filteredBowlingStats}
+        />
       </div>
     </div>
   );
