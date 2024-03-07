@@ -107,8 +107,11 @@ const Comp = () => {
   return (
     <div className="relative">
       <div className="">
-        <div className="flex flex-col items-center justify-center gap-10 p-6">
-          <div className="">
+        <div className="flex flex-col items-center justify-center gap-10">
+          <div className="flex flex-col gap-1">
+            <span className="font-thin text-sm">
+              Select a player to get started...
+            </span>
             <AddPlayer
               selectedPlayer={selectedPlayer}
               setSelectedPlayer={setSelectedPlayer}
