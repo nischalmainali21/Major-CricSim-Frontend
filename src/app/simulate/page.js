@@ -1,21 +1,26 @@
+"use client";
+import { Button } from "@/components/ui/button";
 import React from "react";
+import { getData } from "../../../actions/matchdata";
+import { useSimulateMatchData } from "../../../context/SimulateMatchDataContext";
 
-async function getData() {
-  const res = await fetch("http://127.0.0.1:5000/simulate_match");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+function Simulate() {
+  const { simulateMatchData, setSimulateMatchData } = useSimulateMatchData();
+  async function handleClick() {
+    try {
+      const newData = await getData();
+      setSimulateMatchData(newData);
+    } catch (error) {
+      console.log("error fetchin data", error);
+    }
   }
-
-  return res.json();
-}
-
-async function Simulate() {
-  // const data = await getData();
-  return <div>Simulate</div>;
+  console.log(simulateMatchData);
+  return (
+    <div>
+      <Button onClick={handleClick}>Simualte a Match</Button>
+    </div>
+  );
 }
 
 export default Simulate;
+// onClick={handleClick()}
