@@ -2,13 +2,22 @@ import React from "react";
 import { Button } from "./ui/button";
 
 const predicted_run = {
-  1: (
+  0: (
     <Button
       variant="outline"
       size="icon"
       className="border-2 border-solid border-sky-100"
     >
       .
+    </Button>
+  ),
+  1: (
+    <Button
+      variant="outline"
+      size="icon"
+      className="border-2 border-solid border-sky-100"
+    >
+      1
     </Button>
   ),
   2: (
@@ -79,6 +88,8 @@ const FirstViewOneBall = ({ predicted_outcome, isWicketDelivery }) => {
         >
           <span className="text-red-500">W</span>
         </Button>
+      ) : predicted_outcome === null ? (
+        predicted_run[1]
       ) : (
         predicted_run[predicted_outcome]
       )}
