@@ -1,22 +1,21 @@
 import React from "react";
 import { useSimulateMatchData } from "../../context/SimulateMatchDataContext";
-import FirstViewOneOver from "./FirstViewOneOver";
-
+import FirstViewInning from "./FirstViewInning";
 const SimulateFirstView = () => {
-  const { simulateMatchFirstInningData } = useSimulateMatchData();
+  const { simulateMatchFirstInningData, simulateMatchSecondInningData } =
+    useSimulateMatchData();
 
   return (
-    <div className="flex flex-col gap-10">
-      {Object.entries(simulateMatchFirstInningData).map(([over, rest]) => (
-        <div key={`first_inning_${over}`} className="flex gap-10 ">
-          <div className="flex">
-            <span>Over Number:</span>
-            {over}
-          </div>
-          <FirstViewOneOver overData={rest} />
-        </div>
-      ))}
-    </div>
+    <section className="flex gap-44 justify-center items-start">
+      <FirstViewInning
+        inningTitle="First Innings"
+        inningData={simulateMatchFirstInningData}
+      />
+      <FirstViewInning
+        inningTitle="Second Innings"
+        inningData={simulateMatchSecondInningData}
+      />
+    </section>
   );
 };
 
