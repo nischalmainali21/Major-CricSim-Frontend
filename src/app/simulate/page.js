@@ -3,15 +3,13 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { getData } from "../../../actions/matchdata";
 import { useSimulateMatchData } from "../../../context/SimulateMatchDataContext";
-import SimulateFirstView from "@/components/SimulateFirstView";
+import SimulateTabs from "@/components/SimulateTabs";
 
 function Simulate() {
   const {
     simulateMatchData,
     setSimulateMatchData,
-    simulateMatchFirstInningData,
     setSimulateMatchFirstInningData,
-    simulateMatchSecondInningData,
     setSimulateMatchSecondInningData,
   } = useSimulateMatchData();
   async function handleClick() {
@@ -28,9 +26,13 @@ function Simulate() {
   // console.log(simulateMatchData);
   // console.log(simulateMatchFirstInningData, simulateMatchSecondInningData);
   return (
-    <div>
-      <Button onClick={handleClick}>Simualte a Match</Button>
-      {simulateMatchData && <SimulateFirstView />}
+    <div className="relative">
+      <Button onClick={handleClick} className="absolute right-16">
+        Simualte a Match
+      </Button>
+      {simulateMatchData && (
+        <SimulateTabs simulateMatchData={simulateMatchData} />
+      )}
     </div>
   );
 }

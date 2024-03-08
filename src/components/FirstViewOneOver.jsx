@@ -12,7 +12,7 @@ import CricketBall from "./CricketBall";
 
 const FirstViewOneOver = ({ overData }) => {
   return (
-    <Card className="p-2">
+    <Card className="p-2 border-none">
       <CardContent className="flex gap-4 justify-center items-center">
         {Object.entries(overData).map(
           ([ballnumber, { predicted_outcome, isWicketDelivery }]) => (
