@@ -5,9 +5,9 @@ const SimulateMatchDataContext = createContext(null);
 
 export const SimulateMatchDataProvider = ({ children }) => {
   const [simulateMatchData, setSimulateMatchData] = useState(null);
-  const [simulateMatchFirstInningData, setsimulateMatchFirstInningData] =
+  const [simulateMatchFirstInningData, setSimulateMatchFirstInningData] =
     useState(null);
-  const [simulateMatchSecondInningData, setsimulateMatchSecondInningData] =
+  const [simulateMatchSecondInningData, setSimulateMatchSecondInningData] =
     useState(null);
   return (
     <SimulateMatchDataContext.Provider
@@ -15,9 +15,9 @@ export const SimulateMatchDataProvider = ({ children }) => {
         simulateMatchData,
         setSimulateMatchData,
         simulateMatchFirstInningData,
-        setsimulateMatchFirstInningData,
+        setSimulateMatchFirstInningData,
         simulateMatchSecondInningData,
-        setsimulateMatchSecondInningData,
+        setSimulateMatchSecondInningData,
       }}
     >
       {children}
