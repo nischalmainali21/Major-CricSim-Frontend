@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SimulateFirstView from "./SimulateFirstView";
 import SimulateGraphView from "./SimulateGraphView";
+import SimulateMatchOverview from "./SimulateMatchOverview";
 const SimulateTabs = ({ simulateMatchData }) => {
   return (
     <Tabs defaultValue="over_view">
@@ -12,7 +13,15 @@ const SimulateTabs = ({ simulateMatchData }) => {
         </TabsList>
       </div>
       <TabsContent value="over_view">
-        {simulateMatchData && <SimulateFirstView />}
+        {simulateMatchData && (
+          <div className="flex flex-col  items-center gap-10 ">
+            <div className="w-[450px] ">
+              <SimulateMatchOverview />
+            </div>
+
+            <SimulateFirstView />
+          </div>
+        )}
       </TabsContent>
       <TabsContent value="graph_view">
         {simulateMatchData && <SimulateGraphView />}

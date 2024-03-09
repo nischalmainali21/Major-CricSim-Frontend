@@ -15,7 +15,9 @@ export async function getData() {
 }
 
 export async function getPlotData() {
-  const res = await fetch("http://localhost:8000/api/plot_data");
+  const res = await fetch("http://localhost:8000/api/plot_data", {
+    cache: "no-cache",
+  });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
