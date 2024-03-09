@@ -9,6 +9,7 @@ export const SimulateMatchDataProvider = ({ children }) => {
     useState(null);
   const [simulateMatchSecondInningData, setSimulateMatchSecondInningData] =
     useState(null);
+  const [simulatePlotData, setSimulatePlotData] = useState(null);
   return (
     <SimulateMatchDataContext.Provider
       value={{
@@ -18,6 +19,8 @@ export const SimulateMatchDataProvider = ({ children }) => {
         setSimulateMatchFirstInningData,
         simulateMatchSecondInningData,
         setSimulateMatchSecondInningData,
+        simulatePlotData,
+        setSimulatePlotData,
       }}
     >
       {children}
