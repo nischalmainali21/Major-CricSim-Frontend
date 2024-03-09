@@ -1,6 +1,8 @@
 "use server";
 export async function getData() {
-  const res = await fetch("http://localhost:8000/api/full_data");
+  const res = await fetch("http://localhost:8000/api/full_data", {
+    cache: "no-cache",
+  });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 

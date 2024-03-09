@@ -53,7 +53,6 @@ const FirstViewOneOver = ({ overData }) => {
       <CardFooter className="justify-end">
         <div className="flex items-end justify-end text-center gap-2 font-extralight">
           <p className="text-md ">Runs in this over:</p>
-
           <span className="text-md ">Predicted:{predicted_total_runs}</span>
           <span className="text-md ">Actual:{actual_total_runs}</span>
         </div>
