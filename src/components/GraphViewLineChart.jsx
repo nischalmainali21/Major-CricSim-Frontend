@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  SubTitle,
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -19,6 +20,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   Title,
+  SubTitle,
   Tooltip,
   Legend
 );
@@ -37,7 +39,12 @@ function transformData(originalData) {
   );
 }
 
-const GraphViewLineChart = ({ inningData, chartTitle }) => {
+const GraphViewLineChart = ({
+  inningData,
+  chartTitle,
+  actualScore,
+  predictedScore,
+}) => {
   const transformedData = transformData(inningData);
 
   const cfg = {
@@ -67,6 +74,13 @@ const GraphViewLineChart = ({ inningData, chartTitle }) => {
           text: chartTitle,
           font: {
             size: 30,
+          },
+        },
+        subtitle: {
+          display: true,
+          text: `Actual: ${actualScore} Predicted: ${predictedScore}`,
+          font: {
+            size: 20,
           },
         },
       },
