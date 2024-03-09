@@ -13,6 +13,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 const FirstViewOneOver = ({ overData }) => {
+  const { predicted_total_runs, actual_total_runs, balls } = overData;
   return (
     <Card className="p-2 border-none">
       <CardContent className="flex gap-4 justify-center items-center">
@@ -21,13 +22,11 @@ const FirstViewOneOver = ({ overData }) => {
           <Separator />
           <Button variant="outline">Actual</Button>
         </div>
-        {Object.entries(overData).map(
+        {Object.entries(balls).map(
           ([
             ballnumber,
             { predicted_outcome, isWicketDelivery, actual_outcome },
           ]) => {
-            // console.log(Object.keys(overData));
-            // console.log(overData[overData.length - 1]);
             return (
               <div
                 key={`${overData} + ${ballnumber}`}
@@ -51,6 +50,14 @@ const FirstViewOneOver = ({ overData }) => {
           }
         )}
       </CardContent>
+      <CardFooter className="justify-end">
+        <div className="flex items-end justify-end text-center gap-2 font-extralight">
+          <p className="text-md ">Runs in this over:</p>
+
+          <span className="text-md ">Predicted:{predicted_total_runs}</span>
+          <span className="text-md ">Actual:{actual_total_runs}</span>
+        </div>
+      </CardFooter>
     </Card>
   );
 };
