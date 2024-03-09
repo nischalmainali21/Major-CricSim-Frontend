@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 
-const predicted_run = {
+const run = {
   0: (
     <Button
       variant="outline"
@@ -75,7 +75,7 @@ const predicted_run = {
     </Button>
   ),
 };
-const FirstViewOneBall = ({ predicted_outcome, isWicketDelivery }) => {
+const FirstViewOneBall = ({ outcome, isWicketDelivery }) => {
   return (
     <div>
       {isWicketDelivery ? (
@@ -88,10 +88,10 @@ const FirstViewOneBall = ({ predicted_outcome, isWicketDelivery }) => {
         >
           <span className="text-red-500">W</span>
         </Button>
-      ) : predicted_outcome === null ? (
-        predicted_run[1]
+      ) : outcome === null ? (
+        run[1]
       ) : (
-        predicted_run[predicted_outcome]
+        run[outcome]
       )}
     </div>
   );

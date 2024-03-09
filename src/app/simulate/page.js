@@ -15,7 +15,7 @@ function Simulate() {
   async function handleClick() {
     try {
       const newData = await getData();
-      const { 1: firstData, 2: secondData } = newData[1312199];
+      const { 1: firstData, 2: secondData } = newData[1304061];
       setSimulateMatchData(newData);
       setSimulateMatchFirstInningData(firstData);
       setSimulateMatchSecondInningData(secondData);
