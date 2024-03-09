@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SimulateFirstView from "./SimulateFirstView";
+import SimulateGraphView from "./SimulateGraphView";
 const SimulateTabs = ({ simulateMatchData }) => {
   return (
     <Tabs defaultValue="over_view">
@@ -13,7 +14,9 @@ const SimulateTabs = ({ simulateMatchData }) => {
       <TabsContent value="over_view">
         {simulateMatchData && <SimulateFirstView />}
       </TabsContent>
-      <TabsContent value="graph_view">Graphs</TabsContent>
+      <TabsContent value="graph_view">
+        <SimulateGraphView />
+      </TabsContent>
     </Tabs>
   );
 };
