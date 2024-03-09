@@ -25,7 +25,7 @@ const SimulateMatchOverview = () => {
   } = simulatePlotData;
 
   return (
-    <Card>
+    <Card className="border-none">
       <CardHeader>
         <CardTitle>Match Overview</CardTitle>
         <CardDescription className="flex flex-col">
@@ -33,22 +33,21 @@ const SimulateMatchOverview = () => {
           <span>Actual Winning Team: {actual_winning_team}</span>
           <span>Predicted Winning Team: {predicted_winning_team}</span>
         </CardDescription>
-        <CardContent>
-          <p>
-            <span>Inning 1 Runs </span>
-            <span>Actual: {inning1_actual_total_run} </span>
-            <span>vs </span>
-            <span>Predicted: {inning1_predicted_total_run}</span>
-          </p>
-          <Separator />
-          <p>
-            <span>Inning 2 Runs </span>
-            <span>Actual: {inning2_actual_total_run} </span>
-            <span>vs </span>
-            <span>Predicted: {inning2_predicted_total_run}</span>
-          </p>
-        </CardContent>
       </CardHeader>
+      <CardContent className="flex flex-col gap-2 ">
+        <p>
+          <span>Inning 1 Runs </span>
+          <span>Actual: {inning1_actual_total_run} </span>
+          <span>vs </span>
+          <span>Predicted: {inning1_predicted_total_run}</span>
+        </p>
+        <p>
+          <span>Inning 2 Runs </span>
+          <span>Actual: {inning2_actual_total_run} </span>
+          <span>vs </span>
+          <span>Predicted: {inning2_predicted_total_run}</span>
+        </p>
+      </CardContent>
     </Card>
   );
 };
