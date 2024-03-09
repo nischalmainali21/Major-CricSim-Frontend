@@ -15,7 +15,7 @@ const SimulateTabs = ({ simulateMatchData }) => {
         {simulateMatchData && <SimulateFirstView />}
       </TabsContent>
       <TabsContent value="graph_view">
-        <SimulateGraphView />
+        {simulateMatchData && <SimulateGraphView />}
       </TabsContent>
     </Tabs>
   );

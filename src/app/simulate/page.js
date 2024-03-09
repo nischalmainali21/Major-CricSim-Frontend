@@ -21,7 +21,6 @@ function Simulate() {
       setSimulateMatchData(newData);
       setSimulateMatchFirstInningData(firstData);
       setSimulateMatchSecondInningData(secondData);
-      console.log(plotData);
       setSimulatePlotData(plotData);
     } catch (error) {
       console.log("error fetchin data", error);
