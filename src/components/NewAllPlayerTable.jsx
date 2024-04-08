@@ -32,6 +32,32 @@ import { Input } from "@/components/ui/input";
 
 const columns = [
   {
+    accessorKey: "actions",
+    header: "Add Team",
+    cell: ({ row, table }) => (
+      <div className="flex space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 1)
+          }
+        >
+          Team 1
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 2)
+          }
+        >
+          Team 2
+        </Button>
+      </div>
+    ),
+  },
+  {
     accessorKey: "player_name",
     header: "Player",
     cell: (props) => <p>{props?.getValue()}</p>,
@@ -126,6 +152,14 @@ const NewAllPlayerTable = ({ playersData }) => {
     setData(newList);
   }, []);
 
+  const handleAddToList = (playerName, teamNumber) => {
+    // setSelectedPlayers((prevSelectedPlayers) => [
+    //   ...prevSelectedPlayers,
+    //   playerName,
+    // ]);
+    console.log(playerName, teamNumber);
+  };
+
   const table = useReactTable({
     data,
     columns,
@@ -137,6 +171,7 @@ const NewAllPlayerTable = ({ playersData }) => {
     getPaginationRowModel: getPaginationRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     columnResizeMode: "onChange",
+    meta: { handleAddToList: handleAddToList },
   });
 
   return (
@@ -223,10 +258,6 @@ const NewAllPlayerTable = ({ playersData }) => {
                         cell.column.columnDef.cell,
                         cell.getContext()
                       )}
-                      <div>
-                        <Button>Add to Team 1</Button>
-                        <Button>Add to Team 2</Button>
-                      </div>
                     </TableCell>
                   ))}
                 </TableRow>
