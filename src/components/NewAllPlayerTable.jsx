@@ -25,6 +25,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { Button } from "./ui/button";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -222,6 +223,10 @@ const NewAllPlayerTable = ({ playersData }) => {
                         cell.column.columnDef.cell,
                         cell.getContext()
                       )}
+                      <div>
+                        <Button>Add to Team 1</Button>
+                        <Button>Add to Team 2</Button>
+                      </div>
                     </TableCell>
                   ))}
                 </TableRow>
