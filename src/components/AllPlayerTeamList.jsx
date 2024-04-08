@@ -21,9 +21,10 @@ const AllPlayerTeamList = ({ title, teamData, setTeamData }) => {
     <Card className="w-[400px] max-h-[350px]">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
+        <CardDescription>Selected {teamData.length}/11</CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[200px] w-full rounded-md border p-2">
+        <ScrollArea className="h-[200px] w-full rounded-md  p-2">
           <div className="flex flex-col gap-2 ">
             {teamData.map((playerName) => (
               <div

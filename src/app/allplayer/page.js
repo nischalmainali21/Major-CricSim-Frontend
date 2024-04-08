@@ -1,12 +1,12 @@
 import React from "react";
 import playersData from "../../../data/player_stats_data.json";
 import NewAllPlayerTable from "@/components/NewAllPlayerTable";
-import AllPlayerTeams from "@/components/AllPlayerTeams";
+import AllPlayerTeamSelection from "@/components/AllPlayerTeamSelection";
 
 const AllPlayer = () => {
   return (
     <div className="p-4">
-      <AllPlayerTeams />
+      <AllPlayerTeamSelection />
       <NewAllPlayerTable playersData={playersData} />
     </div>
   );

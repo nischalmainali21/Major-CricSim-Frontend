@@ -3,15 +3,10 @@ import React from "react";
 import { useTeamData } from "../../context/TeamContext";
 import AllPlayerTeamList from "./AllPlayerTeamList";
 
-const AllPlayerTeams = () => {
+const AllPlayerTeamSelection = () => {
   const { firstTeamData, setFirstTeamData, secondTeamData, setSecondTeamData } =
     useTeamData();
 
-  const removePlayerTeam = (playerName) => {
-    setFirstTeamData((prevData) =>
-      prevData.filter((player) => player !== playerName)
-    );
-  };
   return (
     <div className="flex justify-around">
       <AllPlayerTeamList
@@ -28,4 +23,4 @@ const AllPlayerTeams = () => {
   );
 };
 
-export default AllPlayerTeams;
+export default AllPlayerTeamSelection;
