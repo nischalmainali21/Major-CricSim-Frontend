@@ -29,6 +29,7 @@ import {
 import { Button } from "./ui/button";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useTeamData } from "../../context/TeamContext";
 
 const columns = [
   {
@@ -140,7 +141,8 @@ const NewAllPlayerTable = ({ playersData }) => {
   const [data, setData] = useState(() => []);
   const [columnFilters, setColumnFilter] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
-
+  const { setFirstTeamData, setSecondTeamData, firstTeamData, secondTeamData } =
+    useTeamData();
   useEffect(() => {
     const newList = [];
     for (const [key, value] of Object.entries(playersData)) {
@@ -153,13 +155,30 @@ const NewAllPlayerTable = ({ playersData }) => {
   }, []);
 
   const handleAddToList = (playerName, teamNumber) => {
-    // setSelectedPlayers((prevSelectedPlayers) => [
-    //   ...prevSelectedPlayers,
-    //   playerName,
-    // ]);
-    console.log(playerName, teamNumber);
+    // console.log(playerName, teamNumber);
+
+    if (teamNumber === 1) {
+      if (firstTeamData.length === 11) {
+        return;
+      }
+
+      if (!firstTeamData.includes(playerName)) {
+        setFirstTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      }
+      return;
+    }
+
+    if (teamNumber === 2) {
+      if (secondTeamData.length === 11) {
+        return;
+      }
+      if (!secondTeamData.includes(playerName)) {
+        setSecondTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      }
+    }
   };
 
+  console.log("firstTeam", firstTeamData, "secondTeam", secondTeamData);
   const table = useReactTable({
     data,
     columns,

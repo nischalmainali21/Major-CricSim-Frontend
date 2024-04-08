@@ -4,13 +4,13 @@ import React, { createContext, useContext, useState } from "react";
 const TeamDataContext = createContext(null);
 
 export const TeamDataContextProvider = ({ children }) => {
-  const [firstTeamData, setfirstTeamData] = useState([]);
+  const [firstTeamData, setFirstTeamData] = useState([]);
   const [secondTeamData, setSecondTeamData] = useState([]);
   return (
     <TeamDataContext.Provider
       value={{
         firstTeamData,
-        setfirstTeamData,
+        setFirstTeamData,
         secondTeamData,
         setSecondTeamData,
       }}
