@@ -17,9 +17,16 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useCompareSelectedPlayers } from "../../context/CompareSelectedPlayersContext";
 
-const AddPlayer = ({ selectedPlayer, setSelectedPlayer }) => {
+const AddPlayer = () => {
   const [open, setOpen] = useState(false);
+  const {
+    selectedPlayer,
+    setSelectedPlayer,
+    allSelectedPlayers,
+    setAllSelectedPlayers,
+  } = useCompareSelectedPlayers();
   return (
     <div>
       <Popover open={open} onOpenChange={setOpen}>
@@ -52,6 +59,16 @@ const AddPlayer = ({ selectedPlayer, setSelectedPlayer }) => {
                       setSelectedPlayer(
                         currentValue === player ? "" : currentValue
                       );
+                      if (
+                        currentValue !== "" &&
+                        !allSelectedPlayers.includes(currentValue)
+                      ) {
+                        setAllSelectedPlayers((prevSelectedPlayers) => [
+                          ...prevSelectedPlayers,
+                          currentValue,
+                        ]);
+                        setSelectedPlayer("");
+                      }
                       setOpen(false);
                     }}
                   >

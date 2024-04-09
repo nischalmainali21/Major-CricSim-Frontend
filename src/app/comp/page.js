@@ -85,15 +85,15 @@ const Comp = () => {
     allSelectedPlayers,
     setAllSelectedPlayers,
   } = useCompareSelectedPlayers();
-  useEffect(() => {
-    if (selectedPlayer !== "" && !allSelectedPlayers.includes(selectedPlayer)) {
-      setAllSelectedPlayers((prevSelectedPlayers) => [
-        ...prevSelectedPlayers,
-        selectedPlayer,
-      ]);
-      // setSelectedPlayer("");
-    }
-  }, [selectedPlayer]);
+  // useEffect(() => {
+  //   if (selectedPlayer !== "" && !allSelectedPlayers.includes(selectedPlayer)) {
+  //     setAllSelectedPlayers((prevSelectedPlayers) => [
+  //       ...prevSelectedPlayers,
+  //       selectedPlayer,
+  //     ]);
+  //     // setSelectedPlayer("");
+  //   }
+  // }, [selectedPlayer]);
   // console.log(allSelectedPlayers);
   getHighestStats(allSelectedPlayers);
   // console.log(allSelectedPlayers);
@@ -109,10 +109,7 @@ const Comp = () => {
             <span className="font-thin text-sm">
               Select a player to get started...
             </span>
-            <AddPlayer
-              selectedPlayer={selectedPlayer}
-              setSelectedPlayer={setSelectedPlayer}
-            />
+            <AddPlayer />
           </div>
           <div className="flex gap-6">
             {allSelectedPlayers.map((player) => {
