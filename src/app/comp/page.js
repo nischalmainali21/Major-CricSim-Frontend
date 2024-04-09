@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import AddPlayer from "../../components/AddPlayer";
 import playersData from "../../../data/player_stats_data.json";
 import NewPlayerCard from "@/components/NewPlayerCard";
@@ -7,7 +7,7 @@ import playersName from "../../../data/unique_players.json";
 import { lowerBetterStats } from "@/lib/constant";
 import CompSheetFilter from "@/components/CompSheetFilter";
 import { useCompareSelectedPlayers } from "../../../context/CompareSelectedPlayersContext";
-// import CompCompareGraph from "@/components/CompCompareGraph";
+import CompCompareGraph from "@/components/CompCompareGraph";
 
 const StandardStats = {
   batter_matches_played: 0.0,
@@ -129,7 +129,9 @@ const Comp = () => {
               );
             })}
           </div>
-          <div>{/* <CompCompareGraph /> */}</div>
+          <div>
+            <CompCompareGraph />
+          </div>
         </div>
       </div>
       <div className="absolute right-16 top-[24px]">

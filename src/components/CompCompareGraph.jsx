@@ -7,8 +7,12 @@ import {
   Filler,
   Tooltip,
   Legend,
+  Title,
+  SubTitle,
 } from "chart.js";
 import { Radar } from "react-chartjs-2";
+import { useCompareSelectedPlayers } from "../../context/CompareSelectedPlayersContext";
+import all_bat_data from "@/../data/all_bat.json";
 
 ChartJS.register(
   RadialLinearScale,
@@ -16,50 +20,54 @@ ChartJS.register(
   LineElement,
   Filler,
   Tooltip,
-  Legend
+  Legend,
+  Title,
+  SubTitle
 );
 
-function transformData(originalData) {
-  return originalData.map(
-    ({
-      current_ball_number,
-      cumulative_actual_runs,
-      predicted_current_score,
-    }) => ({
-      x: current_ball_number,
-      y1: cumulative_actual_runs,
-      y2: predicted_current_score,
-    })
-  );
+function transformData(originalData, labels) {
+  return labels.map((label) => originalData[label]);
 }
 
 const CompCompareGraph = () => {
-  const transformedData = transformData(test);
+  const { allSelectedPlayers } = useCompareSelectedPlayers();
+  const labels = [
+    "True SR_death",
+    "True Avg_death",
+    "True SR_middle",
+    "True Avg_middle",
+    "True SR_powerplay",
+    "True Avg_powerplay",
+  ];
+
+  const datasets = [];
+
+  allSelectedPlayers.forEach((playerName) => {
+    const playerData = all_bat_data[playerName.toLowerCase()];
+    if (playerData) {
+      const transformedData = transformData(playerData, labels);
+      datasets.push({
+        label: playerName,
+        data: transformedData,
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderWidth: 1,
+        fill: false,
+      });
+    }
+  });
   const cfg = {
     type: "radar",
     data: {
-      labels: transformedData.map((dataPoint) => dataPoint.x),
-      datasets: [
-        {
-          label: "",
-          data: ,
-          borderColor: "rgba(255, 99, 132, 1)",
-          fill: false,
-        },
-        {
-          label: "",
-          data: ,
-          borderColor: "rgba(54, 162, 235, 1)",
-          fill: false,
-        },
-      ],
+      labels: labels,
+      datasets: datasets,
     },
     options: {
       responsive: true,
       plugins: {
         title: {
           display: true,
-          text: chartTitle,
+          text: "True Stats Overview",
           font: {
             size: 30,
           },
@@ -74,7 +82,7 @@ const CompCompareGraph = () => {
       },
     },
   };
-  return <Radar data={cfg.data} options={cfg.options} />;
+  return datasets.length > 0 && <Radar data={cfg.data} options={cfg.options} />;
 };
 
 export default CompCompareGraph;
