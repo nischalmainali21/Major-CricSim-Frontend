@@ -51,7 +51,7 @@ const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
             label: playerName,
             data: transformedData,
             borderWidth: 1,
-            fill: false,
+            fill: true,
           });
         }
       });
@@ -92,10 +92,10 @@ const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
           datasets.push({
             label: playerName,
             data: transformedData,
-            borderColor: "rgba(255, 99, 132, 1)",
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            // borderColor: "rgba(255, 99, 132, 1)",
+            // backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderWidth: 1,
-            fill: false,
+            fill: true,
           });
         }
       });

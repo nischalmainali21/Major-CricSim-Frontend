@@ -34,7 +34,7 @@ const CompCompareGraphAll = () => {
   return (
     <>
       {graphsData.map((item) => (
-        <div className="relative h-[500px] w-[500px] " key={item.chartTitle}>
+        <div className="relative h-[800px] w-[800px] " key={item.chartTitle}>
           <CompCompareGraph
             allPlayerData={item.allPlayerData}
             labels={item.labels}
