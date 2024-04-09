@@ -5,17 +5,8 @@ import playersData from "../../../data/player_stats_data.json";
 import NewPlayerCard from "@/components/NewPlayerCard";
 import playersName from "../../../data/unique_players.json";
 import { lowerBetterStats } from "@/lib/constant";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import CompFilter from "@/components/CompFilter";
 import CompSheetFilter from "@/components/CompSheetFilter";
+// import CompCompareGraph from "@/components/CompCompareGraph";
 
 const StandardStats = {
   batter_matches_played: 0.0,
@@ -133,6 +124,7 @@ const Comp = () => {
               );
             })}
           </div>
+          <div>{/* <CompCompareGraph /> */}</div>
         </div>
       </div>
       <div className="absolute right-16 top-[24px]">
