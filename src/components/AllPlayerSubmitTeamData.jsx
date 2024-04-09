@@ -15,6 +15,9 @@ const AllPlayerSubmitTeamData = () => {
       "secondTeamData",
       secondTeamData
     );
+    alert(
+      `firstTeamData", ${firstTeamData}, "secondTeamData", ${secondTeamData}`
+    );
     // const res = await fetch("http://localhost:8000/api/", {
     //   method: "POST",
     //   body: JSON.stringify({

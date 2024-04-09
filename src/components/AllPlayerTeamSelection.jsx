@@ -8,7 +8,7 @@ const AllPlayerTeamSelection = () => {
     useTeamData();
 
   return (
-    <div className="flex justify-around">
+    <div className="flex flex-col gap-4">
       <AllPlayerTeamList
         title="First Team"
         teamData={firstTeamData}

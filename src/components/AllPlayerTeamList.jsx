@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "./ui/button";
 const AllPlayerTeamList = ({ title, teamData, setTeamData }) => {
   const removePlayerTeam = (playerName) => {
     setTeamData((prevData) =>
@@ -17,31 +17,40 @@ const AllPlayerTeamList = ({ title, teamData, setTeamData }) => {
     );
   };
 
+  function handleResetTeam() {
+    setTeamData([]);
+  }
+
   return (
-    <Card className="w-[400px] max-h-[350px]">
+    <Card className="h-[320px]">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>Selected {teamData.length}/11</CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[200px] w-full rounded-md  p-2">
-          <div className="flex flex-col gap-2 ">
-            {teamData.map((playerName) => (
-              <div
-                key={playerName}
-                className="flex justify-between  gap-4 items-center border border-solid w-[250px] rounded-lg bg-card text-card-foreground shadow-sm p-2"
-              >
-                {playerName}
-                <X
-                  size={16}
-                  onClick={() => removePlayerTeam(playerName)}
-                  className="cursor-pointer"
-                />
-              </div>
-            ))}
-          </div>
-        </ScrollArea>
+        <div className="grid grid-cols-4 xl:grid-cols-7 gap-4">
+          {teamData.map((playerName) => (
+            <div
+              key={playerName}
+              className="flex justify-between  gap-1 items-center border border-solid w-[200px] rounded-lg bg-card text-card-foreground shadow-sm p-2"
+            >
+              {playerName}
+              <X
+                size={16}
+                onClick={() => removePlayerTeam(playerName)}
+                className="cursor-pointer"
+              />
+            </div>
+          ))}
+        </div>
       </CardContent>
+      <CardFooter className="flex-row-reverse">
+        {teamData.length > 0 && (
+          <Button variant="destructive" onClick={handleResetTeam}>
+            Reset
+          </Button>
+        )}
+      </CardFooter>
     </Card>
   );
 };

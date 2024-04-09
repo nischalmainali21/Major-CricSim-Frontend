@@ -7,11 +7,13 @@ import AllPlayerSubmitTeamData from "@/components/AllPlayerSubmitTeamData";
 const AllPlayer = () => {
   return (
     <div className="p-4">
-      <div className="flex">
-        <div className="flex-grow">
+      <div className="flex flex-col items-start gap-8 w-full">
+        <div className="w-full">
           <AllPlayerTeamSelection />
         </div>
-        <AllPlayerSubmitTeamData />
+        <div className="">
+          <AllPlayerSubmitTeamData />
+        </div>
       </div>
       <NewAllPlayerTable playersData={playersData} />
     </div>
