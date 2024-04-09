@@ -61,9 +61,12 @@ const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
       const metrics = Object.keys(allPlayerData[allSelectedPlayers[0]]);
       const minMaxValues = {};
       metrics.forEach((metric) => {
-        const values = allSelectedPlayers.map(
-          (player) => allPlayerData[player][metric]
-        );
+        const values = allSelectedPlayers.map((player) => {
+          const playerData = allPlayerData[player];
+          if (playerData) {
+            return allPlayerData[player][metric];
+          }
+        });
         minMaxValues[metric] = {
           min: Math.min(...values),
           max: Math.max(...values),
