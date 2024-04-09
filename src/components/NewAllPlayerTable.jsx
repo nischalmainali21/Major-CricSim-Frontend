@@ -33,6 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
 
 import { Button } from "./ui/button";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
@@ -167,21 +168,27 @@ const NewAllPlayerTable = ({ playersData }) => {
 
     if (teamNumber === 1) {
       if (firstTeamData.length === 11) {
+        toast.warning("First Team Full");
         return;
       }
 
       if (!firstTeamData.includes(playerName)) {
         setFirstTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      } else {
+        toast.warning("Player already in team");
       }
       return;
     }
 
     if (teamNumber === 2) {
       if (secondTeamData.length === 11) {
+        toast.warning("Second Team Full");
         return;
       }
       if (!secondTeamData.includes(playerName)) {
         setSecondTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      } else {
+        toast.warning("Player already in team");
       }
     }
   };
