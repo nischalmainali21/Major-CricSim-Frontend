@@ -78,12 +78,13 @@ const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
       allSelectedPlayers.forEach((player) => {
         scaledPlayerData[player] = {};
         metrics.forEach((metric) => {
-          const value = allPlayerData[player][metric];
-          const { min, max } = minMaxValues[metric];
-          scaledPlayerData[player][metric] = minMaxScale(value, min, max);
+          if (allPlayerData[player]) {
+            const value = allPlayerData[player][metric];
+            const { min, max } = minMaxValues[metric];
+            scaledPlayerData[player][metric] = minMaxScale(value, min, max);
+          }
         });
       });
-
       allSelectedPlayers.forEach((playerName) => {
         const playerData = scaledPlayerData[playerName.toLowerCase()];
         if (playerData) {
