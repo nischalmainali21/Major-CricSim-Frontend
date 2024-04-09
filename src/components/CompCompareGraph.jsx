@@ -9,6 +9,7 @@ import {
   Legend,
   Title,
   SubTitle,
+  Colors,
 } from "chart.js";
 import { Radar } from "react-chartjs-2";
 import { useCompareSelectedPlayers } from "../../context/CompareSelectedPlayersContext";
@@ -22,12 +23,18 @@ ChartJS.register(
   Tooltip,
   Legend,
   Title,
-  SubTitle
+  SubTitle,
+  Colors
 );
 
 function transformData(originalData, labels) {
   return labels.map((label) => originalData[label]);
 }
+
+// Function to min-max scale the values
+const minMaxScale = (value, min, max) => {
+  return (value - min) / (max - min);
+};
 
 const CompCompareGraph = () => {
   const { allSelectedPlayers } = useCompareSelectedPlayers();
@@ -39,23 +46,68 @@ const CompCompareGraph = () => {
     "True SR_powerplay",
     "True Avg_powerplay",
   ];
-
   const datasets = [];
 
-  allSelectedPlayers.forEach((playerName) => {
-    const playerData = all_bat_data[playerName.toLowerCase()];
-    if (playerData) {
-      const transformedData = transformData(playerData, labels);
-      datasets.push({
-        label: playerName,
-        data: transformedData,
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderWidth: 1,
-        fill: false,
+  if (allSelectedPlayers.length > 0) {
+    //single player selected, do not scale
+    if (allSelectedPlayers.length === 1) {
+      allSelectedPlayers.forEach((playerName) => {
+        const playerData = all_bat_data[playerName.toLowerCase()];
+        if (playerData) {
+          const transformedData = transformData(playerData, labels);
+          datasets.push({
+            label: playerName,
+            data: transformedData,
+            // borderColor: "rgba(255, 99, 132, 1)",
+            // backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 1,
+            fill: false,
+          });
+        }
       });
     }
-  });
+    // more than one player selected, use the min max scaling
+    else {
+      const metrics = Object.keys(all_bat_data[allSelectedPlayers[0]]);
+      const minMaxValues = {};
+      metrics.forEach((metric) => {
+        const values = allSelectedPlayers.map(
+          (player) => all_bat_data[player][metric]
+        );
+        minMaxValues[metric] = {
+          min: Math.min(...values),
+          max: Math.max(...values),
+        };
+      });
+
+      // Scale the values for each player
+      const scaledPlayerData = {};
+      allSelectedPlayers.forEach((player) => {
+        scaledPlayerData[player] = {};
+        metrics.forEach((metric) => {
+          const value = all_bat_data[player][metric];
+          const { min, max } = minMaxValues[metric];
+          scaledPlayerData[player][metric] = minMaxScale(value, min, max);
+        });
+      });
+
+      allSelectedPlayers.forEach((playerName) => {
+        const playerData = scaledPlayerData[playerName.toLowerCase()];
+        if (playerData) {
+          const transformedData = transformData(playerData, labels);
+          datasets.push({
+            label: playerName,
+            data: transformedData,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 1,
+            fill: false,
+          });
+        }
+      });
+    }
+  }
+
   const cfg = {
     type: "radar",
     data: {
@@ -78,6 +130,9 @@ const CompCompareGraph = () => {
           font: {
             size: 20,
           },
+        },
+        colors: {
+          forceOverride: true,
         },
       },
     },
