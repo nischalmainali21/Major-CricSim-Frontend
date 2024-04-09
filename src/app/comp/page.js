@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AddPlayer from "../../components/AddPlayer";
 import playersData from "../../../data/player_stats_data.json";
 import NewPlayerCard from "@/components/NewPlayerCard";
@@ -7,10 +7,9 @@ import playersName from "../../../data/unique_players.json";
 import { lowerBetterStats } from "@/lib/constant";
 import CompSheetFilter from "@/components/CompSheetFilter";
 import { useCompareSelectedPlayers } from "../../../context/CompareSelectedPlayersContext";
-import CompCompareGraph from "@/components/CompCompareGraph";
 import CompCompareGraphAll from "@/components/CompCompareGraphAll";
 
-const StandardStats = {
+const InitialStandardStats = {
   batter_matches_played: 0.0,
   runs_scored: 0.0,
   dismissals: 0.0,
@@ -54,6 +53,7 @@ const StandardStats = {
 };
 
 function getHighestStats(allPlayers) {
+  const StandardStats = { ...InitialStandardStats };
   allPlayers.forEach((playerName) => {
     const matchingPlayer = Object.keys(playersData).find(
       (item) => item.toLowerCase() === playerName.toLowerCase()
@@ -76,28 +76,20 @@ function getHighestStats(allPlayers) {
       }
     });
   });
+  return StandardStats;
 }
 
 const Comp = () => {
-  const {
-    selectedPlayer,
-    setSelectedPlayer,
-    allSelectedPlayers,
-    setAllSelectedPlayers,
-  } = useCompareSelectedPlayers();
-  // useEffect(() => {
-  //   if (selectedPlayer !== "" && !allSelectedPlayers.includes(selectedPlayer)) {
-  //     setAllSelectedPlayers((prevSelectedPlayers) => [
-  //       ...prevSelectedPlayers,
-  //       selectedPlayer,
-  //     ]);
-  //     // setSelectedPlayer("");
-  //   }
-  // }, [selectedPlayer]);
+  const { allSelectedPlayers } = useCompareSelectedPlayers();
+  const [standardStats, setStandardStats] = useState({
+    ...InitialStandardStats,
+  });
+
+  useEffect(() => {
+    const StandardStats = getHighestStats(allSelectedPlayers);
+    setStandardStats(StandardStats);
+  }, [allSelectedPlayers]);
   // console.log(allSelectedPlayers);
-  getHighestStats(allSelectedPlayers);
-  // console.log(allSelectedPlayers);
-  // console.log(StandardStats);
   // playersName.unique_players.find(
   //   (player) => player.toLowerCase() === selectedPlayer
   // );
@@ -121,8 +113,7 @@ const Comp = () => {
                   key={actualName}
                   playerName={actualName}
                   playerStats={playersData[actualName]}
-                  StandardStats={StandardStats}
-                  setAllSelectedPlayers={setAllSelectedPlayers}
+                  StandardStats={standardStats}
                 />
               );
             })}

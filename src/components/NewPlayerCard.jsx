@@ -11,14 +11,11 @@ import StatProgress from "./StatProgress";
 import { labeledPlayerStats } from "@/lib/constant";
 import { X } from "lucide-react";
 import { useSelectedFilters } from "../../context/SelectedFiltersContext";
+import { useCompareSelectedPlayers } from "../../context/CompareSelectedPlayersContext";
 
-const NewPlayerCard = ({
-  playerName,
-  playerStats,
-  StandardStats,
-  setAllSelectedPlayers,
-}) => {
+const NewPlayerCard = ({ playerName, playerStats, StandardStats }) => {
   const { selectedFilters } = useSelectedFilters();
+  const { setAllSelectedPlayers } = useCompareSelectedPlayers();
 
   function handleRemovePlayer() {
     setAllSelectedPlayers((prevSelectedPlayers) =>
