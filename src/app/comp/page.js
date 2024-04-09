@@ -6,6 +6,7 @@ import NewPlayerCard from "@/components/NewPlayerCard";
 import playersName from "../../../data/unique_players.json";
 import { lowerBetterStats } from "@/lib/constant";
 import CompSheetFilter from "@/components/CompSheetFilter";
+import { useCompareSelectedPlayers } from "../../../context/CompareSelectedPlayersContext";
 // import CompCompareGraph from "@/components/CompCompareGraph";
 
 const StandardStats = {
@@ -77,8 +78,12 @@ function getHighestStats(allPlayers) {
 }
 
 const Comp = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState("");
-  const [allSelectedPlayers, setAllSelectedPlayers] = useState([]);
+  const {
+    selectedPlayer,
+    setSelectedPlayer,
+    allSelectedPlayers,
+    setAllSelectedPlayers,
+  } = useCompareSelectedPlayers();
   useEffect(() => {
     if (selectedPlayer !== "" && !allSelectedPlayers.includes(selectedPlayer)) {
       setAllSelectedPlayers((prevSelectedPlayers) => [
