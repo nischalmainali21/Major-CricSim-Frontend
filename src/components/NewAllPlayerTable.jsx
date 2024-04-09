@@ -25,11 +25,39 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { Button } from "./ui/button";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useTeamData } from "../../context/TeamContext";
 
 const columns = [
+  {
+    accessorKey: "actions",
+    header: "Add Team",
+    cell: ({ row, table }) => (
+      <div className="flex space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 1)
+          }
+        >
+          Team 1
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 2)
+          }
+        >
+          Team 2
+        </Button>
+      </div>
+    ),
+  },
   {
     accessorKey: "player_name",
     header: "Player",
@@ -113,7 +141,8 @@ const NewAllPlayerTable = ({ playersData }) => {
   const [data, setData] = useState(() => []);
   const [columnFilters, setColumnFilter] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
-
+  const { setFirstTeamData, setSecondTeamData, firstTeamData, secondTeamData } =
+    useTeamData();
   useEffect(() => {
     const newList = [];
     for (const [key, value] of Object.entries(playersData)) {
@@ -125,6 +154,31 @@ const NewAllPlayerTable = ({ playersData }) => {
     setData(newList);
   }, []);
 
+  const handleAddToList = (playerName, teamNumber) => {
+    // console.log(playerName, teamNumber);
+
+    if (teamNumber === 1) {
+      if (firstTeamData.length === 11) {
+        return;
+      }
+
+      if (!firstTeamData.includes(playerName)) {
+        setFirstTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      }
+      return;
+    }
+
+    if (teamNumber === 2) {
+      if (secondTeamData.length === 11) {
+        return;
+      }
+      if (!secondTeamData.includes(playerName)) {
+        setSecondTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      }
+    }
+  };
+
+  console.log("firstTeam", firstTeamData, "secondTeam", secondTeamData);
   const table = useReactTable({
     data,
     columns,
@@ -136,6 +190,7 @@ const NewAllPlayerTable = ({ playersData }) => {
     getPaginationRowModel: getPaginationRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     columnResizeMode: "onChange",
+    meta: { handleAddToList: handleAddToList },
   });
 
   return (
