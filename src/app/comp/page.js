@@ -8,6 +8,8 @@ import { lowerBetterStats } from "@/lib/constant";
 import CompSheetFilter from "@/components/CompSheetFilter";
 import { useCompareSelectedPlayers } from "../../../context/CompareSelectedPlayersContext";
 import CompCompareGraph from "@/components/CompCompareGraph";
+import all_bat_data from "@/../data/all_bat.json";
+import all_bowl_data from "@/../data/all_bowl.json";
 
 const StandardStats = {
   batter_matches_played: 0.0,
@@ -129,8 +131,35 @@ const Comp = () => {
               );
             })}
           </div>
-          <div>
-            <CompCompareGraph />
+          <div className="flex gap-16 justify-between">
+            <div className="relative h-[500px] w-[500px]">
+              <CompCompareGraph
+                allPlayerData={all_bat_data}
+                labels={[
+                  "True SR_death",
+                  "True Avg_death",
+                  "True SR_middle",
+                  "True Avg_middle",
+                  "True SR_powerplay",
+                  "True Avg_powerplay",
+                ]}
+                chartTitle="True Bat Stats Overview"
+              />
+            </div>
+            <div className="relative h-[500px] w-[500px]">
+              <CompCompareGraph
+                allPlayerData={all_bowl_data}
+                labels={[
+                  "True Economy_death",
+                  "True SR_death",
+                  "True Economy_middle",
+                  "True SR_middle",
+                  "True Economy_powerplay",
+                  "True SR_powerplay",
+                ]}
+                chartTitle="True Bowl Stats Overview"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,6 @@ import {
 } from "chart.js";
 import { Radar } from "react-chartjs-2";
 import { useCompareSelectedPlayers } from "../../context/CompareSelectedPlayersContext";
-import all_bat_data from "@/../data/all_bat.json";
 
 ChartJS.register(
   RadialLinearScale,
@@ -36,30 +35,21 @@ const minMaxScale = (value, min, max) => {
   return (value - min) / (max - min);
 };
 
-const CompCompareGraph = () => {
+const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
   const { allSelectedPlayers } = useCompareSelectedPlayers();
-  const labels = [
-    "True SR_death",
-    "True Avg_death",
-    "True SR_middle",
-    "True Avg_middle",
-    "True SR_powerplay",
-    "True Avg_powerplay",
-  ];
   const datasets = [];
 
   if (allSelectedPlayers.length > 0) {
     //single player selected, do not scale
     if (allSelectedPlayers.length === 1) {
       allSelectedPlayers.forEach((playerName) => {
-        const playerData = all_bat_data[playerName.toLowerCase()];
+        const playerData = allPlayerData[playerName.toLowerCase()];
+
         if (playerData) {
           const transformedData = transformData(playerData, labels);
           datasets.push({
             label: playerName,
             data: transformedData,
-            // borderColor: "rgba(255, 99, 132, 1)",
-            // backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderWidth: 1,
             fill: false,
           });
@@ -68,11 +58,11 @@ const CompCompareGraph = () => {
     }
     // more than one player selected, use the min max scaling
     else {
-      const metrics = Object.keys(all_bat_data[allSelectedPlayers[0]]);
+      const metrics = Object.keys(allPlayerData[allSelectedPlayers[0]]);
       const minMaxValues = {};
       metrics.forEach((metric) => {
         const values = allSelectedPlayers.map(
-          (player) => all_bat_data[player][metric]
+          (player) => allPlayerData[player][metric]
         );
         minMaxValues[metric] = {
           min: Math.min(...values),
@@ -85,7 +75,7 @@ const CompCompareGraph = () => {
       allSelectedPlayers.forEach((player) => {
         scaledPlayerData[player] = {};
         metrics.forEach((metric) => {
-          const value = all_bat_data[player][metric];
+          const value = allPlayerData[player][metric];
           const { min, max } = minMaxValues[metric];
           scaledPlayerData[player][metric] = minMaxScale(value, min, max);
         });
@@ -119,7 +109,7 @@ const CompCompareGraph = () => {
       plugins: {
         title: {
           display: true,
-          text: "True Stats Overview",
+          text: chartTitle,
           font: {
             size: 30,
           },
