@@ -30,7 +30,10 @@ function Simulate() {
   // console.log(simulateMatchFirstInningData, simulateMatchSecondInningData);
   return (
     <div className="relative">
-      <Button onClick={handleClick} className="absolute right-16">
+      <h1 className="text-3xl font-bold">
+        Requires connection with backend, clone repo
+      </h1>
+      <Button onClick={handleClick} className="absolute right-16" disabled>
         Simualte a Match
       </Button>
       {simulateMatchData && (
