@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useTeamData } from "../../context/TeamContext";
 import { Button } from "./ui/button";
+import { Loader2 } from "lucide-react";
 
 const AllPlayerSubmitTeamData = () => {
   const {
@@ -11,12 +12,16 @@ const AllPlayerSubmitTeamData = () => {
     setVersusFirstInningsData,
     setVersusSecondInningsData,
   } = useTeamData();
+
   const disableButton =
     firstTeamData.length === 11 && secondTeamData.length === 11 && venue !== ""
       ? false
       : true;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmitTeamData = async () => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:8000/api/team-api/", {
       method: "POST",
       headers: {
@@ -35,9 +40,14 @@ const AllPlayerSubmitTeamData = () => {
     const versusData = await res.json();
     setVersusFirstInningsData(versusData["innings1"]);
     setVersusSecondInningsData(versusData["innings2"]);
+    setIsLoading(false);
   };
   return (
-    <Button disabled={disableButton} onClick={handleSubmitTeamData}>
+    <Button
+      disabled={disableButton || isLoading}
+      onClick={handleSubmitTeamData}
+    >
+      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       Simulate a Match
     </Button>
   );
