@@ -25,7 +25,7 @@ const NewPlayerCard = ({ playerName, playerStats, StandardStats }) => {
     );
   }
   return (
-    <Card>
+    <Card className="w-[300px]">
       <CardHeader>
         <CardTitle className="flex justify-between">
           {playerName}
