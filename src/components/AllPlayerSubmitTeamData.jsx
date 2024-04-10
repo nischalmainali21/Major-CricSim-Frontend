@@ -4,33 +4,39 @@ import { useTeamData } from "../../context/TeamContext";
 import { Button } from "./ui/button";
 
 const AllPlayerSubmitTeamData = () => {
-  const { firstTeamData, secondTeamData } = useTeamData();
+  const { firstTeamData, secondTeamData, venue } = useTeamData();
   const disableButton =
-    firstTeamData.length === 11 && secondTeamData.length === 11 ? false : true;
+    firstTeamData.length === 11 && secondTeamData.length === 11 && venue !== ""
+      ? false
+      : true;
 
   const handleSubmitTeamData = async () => {
-    console.log(
-      "firstTeamData",
-      firstTeamData,
-      "secondTeamData",
-      secondTeamData
-    );
-    alert(
-      `firstTeamData", ${firstTeamData}, "secondTeamData", ${secondTeamData}`
-    );
-    // const res = await fetch("http://localhost:8000/api/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     firstTeamData,
-    //     secondTeamData,
-    //   }),
-    // });
-    // if (!res.ok) {
-    //   // This will activate the closest `error.js` Error Boundary
-    //   throw new Error("Failed to fetch data");
-    // }
+    // console.log(
+    //   "firstTeamData",
+    //   firstTeamData,
+    //   "secondTeamData",
+    //   secondTeamData
+    // );
+    // alert(
+    //   `firstTeamData", ${firstTeamData}, "secondTeamData", ${secondTeamData}`
+    // );
+    const res = await fetch("http://localhost:8000/api/team-api/", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        team1: firstTeamData,
+        team2: secondTeamData,
+        venue: venue,
+      }),
+    });
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
 
-    // return res.json();
+    console.log(res.json());
   };
   return (
     <Button disabled={disableButton} onClick={handleSubmitTeamData}>
