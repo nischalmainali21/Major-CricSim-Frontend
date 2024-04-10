@@ -17,7 +17,9 @@ function Simulate() {
     try {
       const newData = await getData();
       const plotData = await getPlotData();
-      const { 1: firstData, 2: secondData } = newData[1304061];
+      const matchID = Object.keys(newData);
+      // console.log(matchID);
+      const { 1: firstData, 2: secondData } = newData[matchID[0]];
       setSimulateMatchData(newData);
       setSimulateMatchFirstInningData(firstData);
       setSimulateMatchSecondInningData(secondData);
