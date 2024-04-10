@@ -25,11 +25,48 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
+
 import { Button } from "./ui/button";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useTeamData } from "../../context/TeamContext";
 
 const columns = [
+  {
+    accessorKey: "actions",
+    header: "Add Team",
+    cell: ({ row, table }) => (
+      <div className="flex space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 1)
+          }
+        >
+          Team 1
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            table.options.meta.handleAddToList(row.original.player_name, 2)
+          }
+        >
+          Team 2
+        </Button>
+      </div>
+    ),
+  },
   {
     accessorKey: "player_name",
     header: "Player",
@@ -113,7 +150,8 @@ const NewAllPlayerTable = ({ playersData }) => {
   const [data, setData] = useState(() => []);
   const [columnFilters, setColumnFilter] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
-
+  const { setFirstTeamData, setSecondTeamData, firstTeamData, secondTeamData } =
+    useTeamData();
   useEffect(() => {
     const newList = [];
     for (const [key, value] of Object.entries(playersData)) {
@@ -125,6 +163,37 @@ const NewAllPlayerTable = ({ playersData }) => {
     setData(newList);
   }, []);
 
+  const handleAddToList = (playerName, teamNumber) => {
+    // console.log(playerName, teamNumber);
+
+    if (teamNumber === 1) {
+      if (firstTeamData.length === 11) {
+        toast.warning("First Team Full");
+        return;
+      }
+
+      if (!firstTeamData.includes(playerName)) {
+        setFirstTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      } else {
+        toast.warning("Player already in team");
+      }
+      return;
+    }
+
+    if (teamNumber === 2) {
+      if (secondTeamData.length === 11) {
+        toast.warning("Second Team Full");
+        return;
+      }
+      if (!secondTeamData.includes(playerName)) {
+        setSecondTeamData((prevPlayers) => [...prevPlayers, playerName]);
+      } else {
+        toast.warning("Player already in team");
+      }
+    }
+  };
+
+  console.log("firstTeam", firstTeamData, "secondTeam", secondTeamData);
   const table = useReactTable({
     data,
     columns,
@@ -136,6 +205,7 @@ const NewAllPlayerTable = ({ playersData }) => {
     getPaginationRowModel: getPaginationRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     columnResizeMode: "onChange",
+    meta: { handleAddToList: handleAddToList },
   });
 
   return (
@@ -240,6 +310,30 @@ const NewAllPlayerTable = ({ playersData }) => {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex items-center space-x-2">
+          <p className="text-sm font-medium">Rows per page</p>
+          <Select
+            value={`${table.getState().pagination.pageSize}`}
+            onValueChange={(value) => {
+              table.setPageSize(Number(value));
+            }}
+          >
+            <SelectTrigger className="h-8 w-[70px]">
+              <SelectValue placeholder={table.getState().pagination.pageSize} />
+            </SelectTrigger>
+            <SelectContent side="top">
+              {[10, 20, 30, 40, 50].map((pageSize) => (
+                <SelectItem key={pageSize} value={`${pageSize}`}>
+                  {pageSize}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </div>
         <Button
           variant="outline"
           size="sm"
