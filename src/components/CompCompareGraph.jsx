@@ -41,65 +41,65 @@ const CompCompareGraph = ({ allPlayerData, labels, chartTitle }) => {
 
   if (allSelectedPlayers.length > 0) {
     //single player selected, do not scale
-    if (allSelectedPlayers.length === 1) {
-      allSelectedPlayers.forEach((playerName) => {
-        const playerData = allPlayerData[playerName.toLowerCase()];
 
-        if (playerData) {
-          const transformedData = transformData(playerData, labels);
-          datasets.push({
-            label: playerName,
-            data: transformedData,
-            borderWidth: 1,
-            fill: true,
-          });
-        }
-      });
-    }
+    allSelectedPlayers.forEach((playerName) => {
+      const playerData = allPlayerData[playerName.toLowerCase()];
+
+      if (playerData) {
+        const transformedData = transformData(playerData, labels);
+        datasets.push({
+          label: playerName,
+          data: transformedData,
+          borderWidth: 1,
+          fill: true,
+        });
+      }
+    });
+
     // more than one player selected, use the min max scaling
-    else {
-      const metrics = Object.keys(allPlayerData[allSelectedPlayers[0]]);
-      const minMaxValues = {};
-      metrics.forEach((metric) => {
-        const values = allSelectedPlayers.map((player) => {
-          const playerData = allPlayerData[player];
-          if (playerData) {
-            return allPlayerData[player][metric];
-          }
-        });
-        minMaxValues[metric] = {
-          min: Math.min(...values),
-          max: Math.max(...values),
-        };
-      });
+    // else {
+    //   const metrics = Object.keys(allPlayerData[allSelectedPlayers[0]]);
+    //   const minMaxValues = {};
+    //   metrics.forEach((metric) => {
+    //     const values = allSelectedPlayers.map((player) => {
+    //       const playerData = allPlayerData[player];
+    //       if (playerData) {
+    //         return allPlayerData[player][metric];
+    //       }
+    //     });
+    //     minMaxValues[metric] = {
+    //       min: Math.min(...values),
+    //       max: Math.max(...values),
+    //     };
+    //   });
 
-      // Scale the values for each player
-      const scaledPlayerData = {};
-      allSelectedPlayers.forEach((player) => {
-        scaledPlayerData[player] = {};
-        metrics.forEach((metric) => {
-          if (allPlayerData[player]) {
-            const value = allPlayerData[player][metric];
-            const { min, max } = minMaxValues[metric];
-            scaledPlayerData[player][metric] = minMaxScale(value, min, max);
-          }
-        });
-      });
-      allSelectedPlayers.forEach((playerName) => {
-        const playerData = scaledPlayerData[playerName.toLowerCase()];
-        if (playerData) {
-          const transformedData = transformData(playerData, labels);
-          datasets.push({
-            label: playerName,
-            data: transformedData,
-            // borderColor: "rgba(255, 99, 132, 1)",
-            // backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderWidth: 1,
-            fill: true,
-          });
-        }
-      });
-    }
+    //   // Scale the values for each player
+    //   const scaledPlayerData = {};
+    //   allSelectedPlayers.forEach((player) => {
+    //     scaledPlayerData[player] = {};
+    //     metrics.forEach((metric) => {
+    //       if (allPlayerData[player]) {
+    //         const value = allPlayerData[player][metric];
+    //         const { min, max } = minMaxValues[metric];
+    //         scaledPlayerData[player][metric] = minMaxScale(value, min, max);
+    //       }
+    //     });
+    //   });
+    //   allSelectedPlayers.forEach((playerName) => {
+    //     const playerData = scaledPlayerData[playerName.toLowerCase()];
+    //     if (playerData) {
+    //       const transformedData = transformData(playerData, labels);
+    //       datasets.push({
+    //         label: playerName,
+    //         data: transformedData,
+    //         // borderColor: "rgba(255, 99, 132, 1)",
+    //         // backgroundColor: "rgba(255, 99, 132, 0.2)",
+    //         borderWidth: 1,
+    //         fill: true,
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   const cfg = {
