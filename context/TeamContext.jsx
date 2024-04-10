@@ -30,6 +30,7 @@ export const TeamDataContextProvider = ({ children }) => {
     "YK Pathan",
     "YS Chahal",
   ]);
+  const [venue, setVenue] = useState("Brabourne Stadium");
   return (
     <TeamDataContext.Provider
       value={{
@@ -37,6 +38,8 @@ export const TeamDataContextProvider = ({ children }) => {
         setFirstTeamData,
         secondTeamData,
         setSecondTeamData,
+        venue,
+        setVenue,
       }}
     >
       {children}
