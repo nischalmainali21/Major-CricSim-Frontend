@@ -3,6 +3,7 @@ import playersData from "../../../data/player_stats_data.json";
 import NewAllPlayerTable from "@/components/NewAllPlayerTable";
 import AllPlayerTeamSelection from "@/components/AllPlayerTeamSelection";
 import AllPlayerSubmitTeamData from "@/components/AllPlayerSubmitTeamData";
+import AllPlayerVenueSelection from "@/components/AllPlayerVenueSelection";
 
 const AllPlayer = () => {
   return (
@@ -11,7 +12,8 @@ const AllPlayer = () => {
         <div className="w-full">
           <AllPlayerTeamSelection />
         </div>
-        <div className="">
+        <div className="flex gap-6">
+          <AllPlayerVenueSelection />
           <AllPlayerSubmitTeamData />
         </div>
       </div>
