@@ -35,6 +35,14 @@ const AllPlayerVersusResultGraph = () => {
   const secondInningsCumulativeRuns = versusSecondInningsData.map(
     (item) => item.cumulative_runs
   );
+  const firstTeamTotalRun = firstInningsCumulativeRuns.slice(-1);
+  const secondTeamTotalRun = secondInningsCumulativeRuns.slice(-1);
+  const winnerTeam =
+    parseInt(firstTeamTotalRun) === parseInt(secondTeamTotalRun)
+      ? "Draw"
+      : parseInt(firstTeamTotalRun) > parseInt(secondTeamTotalRun)
+      ? "Team 1"
+      : "Team 2";
   const cfg = {
     type: "line",
     data: {
@@ -81,16 +89,16 @@ const AllPlayerVersusResultGraph = () => {
       plugins: {
         title: {
           display: true,
-          text: "Team 1 vs Team 2 Runs ",
+          text: "Team 1 vs Team 2 Runs",
           font: {
             size: 30,
           },
         },
         subtitle: {
           display: true,
-          text: ``,
+          text: `Winner:${winnerTeam}${" "} Team 1 Runs:${firstTeamTotalRun}${" "} Team 2 Runs:${secondTeamTotalRun}`,
           font: {
-            size: 20,
+            size: 15,
           },
         },
       },
