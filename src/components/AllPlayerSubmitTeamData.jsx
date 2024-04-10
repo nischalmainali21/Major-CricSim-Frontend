@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useTeamData } from "../../context/TeamContext";
 import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const AllPlayerSubmitTeamData = () => {
   const {
@@ -40,6 +41,7 @@ const AllPlayerSubmitTeamData = () => {
     const versusData = await res.json();
     setVersusFirstInningsData(versusData["innings1"]);
     setVersusSecondInningsData(versusData["innings2"]);
+    toast.success("Match Sucessfully Simulated");
     setIsLoading(false);
   };
   return (

@@ -5,7 +5,7 @@ import { getData, getPlotData } from "../../../actions/matchdata";
 import { useSimulateMatchData } from "../../../context/SimulateMatchDataContext";
 import SimulateTabs from "@/components/SimulateTabs";
 import { Loader2 } from "lucide-react";
-
+import { toast } from "sonner";
 function Simulate() {
   const {
     simulateMatchData,
@@ -27,6 +27,7 @@ function Simulate() {
       setSimulateMatchFirstInningData(firstData);
       setSimulateMatchSecondInningData(secondData);
       setSimulatePlotData(plotData);
+      toast.success("Match Sucessfully Simulated");
       setisLoading(false);
     } catch (error) {
       console.log("error fetchin data", error);
