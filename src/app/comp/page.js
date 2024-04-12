@@ -99,7 +99,9 @@ const Comp = () => {
         <div className="flex flex-col items-center justify-center gap-10">
           <div className="flex flex-col gap-1">
             <span className="font-thin text-sm">
-              Select a player to get started...
+              {allSelectedPlayers.length > 0
+                ? "Add More Players..."
+                : "Select a player to get started..."}
             </span>
             <AddPlayer />
           </div>

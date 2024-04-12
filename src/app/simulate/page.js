@@ -1,10 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
 import { getData, getPlotData } from "../../../actions/matchdata";
 import { useSimulateMatchData } from "../../../context/SimulateMatchDataContext";
 import SimulateTabs from "@/components/SimulateTabs";
-
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 function Simulate() {
   const {
     simulateMatchData,
@@ -13,15 +14,21 @@ function Simulate() {
     setSimulateMatchSecondInningData,
     setSimulatePlotData,
   } = useSimulateMatchData();
+  const [isLoading, setisLoading] = useState(false);
   async function handleClick() {
     try {
+      setisLoading(true);
       const newData = await getData();
       const plotData = await getPlotData();
-      const { 1: firstData, 2: secondData } = newData[1304061];
+      const matchID = Object.keys(newData);
+      // console.log(matchID);
+      const { 1: firstData, 2: secondData } = newData[matchID[0]];
       setSimulateMatchData(newData);
       setSimulateMatchFirstInningData(firstData);
       setSimulateMatchSecondInningData(secondData);
       setSimulatePlotData(plotData);
+      toast.success("Match Sucessfully Simulated");
+      setisLoading(false);
     } catch (error) {
       console.log("error fetchin data", error);
     }
@@ -33,7 +40,13 @@ function Simulate() {
       <h1 className="text-3xl font-bold">
         Requires connection with backend, clone repo
       </h1>
-      <Button onClick={handleClick} className="absolute right-16" disabled>
+      <Button
+        onClick={handleClick}
+        // disabled={isLoading}
+        disabled
+        className="absolute right-16"
+      >
+        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         Simualte a Match
       </Button>
       {simulateMatchData && (
