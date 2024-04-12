@@ -45,13 +45,17 @@ const AllPlayerSubmitTeamData = () => {
     setIsLoading(false);
   };
   return (
-    <Button
-      disabled={disableButton || isLoading}
-      onClick={handleSubmitTeamData}
-    >
-      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      Simulate a Match
-    </Button>
+    <>
+      <Button
+        // disabled={disableButton || isLoading}
+        disabled
+        onClick={handleSubmitTeamData}
+      >
+        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        Simulate a Match
+      </Button>
+      <span>Disabled, required connection with backend, clone repo</span>
+    </>
   );
 };
 
