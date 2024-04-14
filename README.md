@@ -14,3 +14,25 @@ The [deployed version](https://cricsim.vercel.app/) only works for for comparing
     npm install
     npm run dev
 ```
+
+# Website Screenshots
+
+## Home Page
+
+![Home Page](./public/HomePage.png)
+
+## Compare Players
+
+![Compare Players](./public/ComparePlayers.png)
+
+## Custom Team Selection
+
+![Custom Team Selection](./public/CustomTeamSelection.png)
+
+## LSTM Over by Over View
+
+![LSTM Over by Over View](./public/LSTMOver.png)
+
+## LSTM Graph View
+
+![LSTM Graph View](./public/LSTMGraph.png)
